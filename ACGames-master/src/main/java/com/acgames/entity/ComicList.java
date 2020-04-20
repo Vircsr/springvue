@@ -1,0 +1,31 @@
+package com.acgames.entity;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.Data;
+import lombok.ToString;
+
+import javax.persistence.*;
+import java.sql.Timestamp;
+
+@Data
+@Entity
+@Table(name = "comic_list")
+@ToString
+@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
+public class ComicList {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "comic_name")
+    private String comicName;
+    @Column(name = "comic_cover")
+    private String comicCover;
+    private int like;
+    private String info;
+    @Column(name = "create_time")
+    private Timestamp createTime;
+    @Column(name = "update_time")
+    private Timestamp updateTime;
+}
