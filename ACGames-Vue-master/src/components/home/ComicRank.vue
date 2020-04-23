@@ -1,6 +1,7 @@
 <template>
   <div>
     <div v-for="(item, index) in animes" :key="item.id">
+      <router-link :to="{name:'AnimePlayers', params:{id: item.id}}">
       <el-row :gutter="5" class="anime" style="margin-bottom:3px;height:35px;">
         <el-col :span="4">
           <span style="height:35px;line-height:35px;">{{index + 1}}</span>
@@ -9,6 +10,7 @@
           <span style="height:35px;line-height:35px;">{{item.comicName}}</span>
         </el-col>
       </el-row>
+      </router-link>
     </div>
   </div>
 </template>

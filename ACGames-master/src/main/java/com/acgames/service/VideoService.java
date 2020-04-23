@@ -36,6 +36,9 @@ public class VideoService {
         return videoDAO.findAllByVariety(variety);
     }
 
+    public List<Video> listByAuthid(int authid){
+        return videoDAO.findAllByAuthid(authid);
+    }
 //    public List<Video> listByAuthor(String author){
 //        return videoDAO.findAllByAuthor(author);
 //    }

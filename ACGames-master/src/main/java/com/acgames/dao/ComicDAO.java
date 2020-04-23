@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ComicDAO extends JpaRepository<Comic,Integer> {
-    List<Comic> findAllByComicList(ComicList comicList);
+    List<Comic> findAllByComicListIdOrderBySectionIdAsc(int comicListId);
 }

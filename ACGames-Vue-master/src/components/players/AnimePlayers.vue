@@ -4,14 +4,13 @@
       <el-col :span="16">
         <el-card class="video-information" style="width:100%;height:120px;margin-bottom:10px;">
           <el-row :gutter="5" style="height:25px;overflow: hidden;">
-            <el-col :span="12" class="information-title" style="height:25px;" align="left">{{videoInfo.title}}</el-col>
-            <el-col :span="3" class="information-hits" style="height:25px;line-height:25px;font-size:12px;">播放数:{{videoInfo.hits}}</el-col>
+            <el-col :span="15" class="information-title" style="height:25px;" align="left">{{videoInfo.comicName}}</el-col>
             <el-col :span="3" class="information-like" style="height:25px;">
-              <el-button type="danger" style="height:25px;" size="mini">{{videoInfo.likes}}</el-button>
+              <el-button type="danger" style="height:25px;width:100%;" size="mini">{{videoInfo.like}}</el-button>
             </el-col>
             <el-col :span="6" class="information-time" style="height:25px;line-height:25px;font-size:12px;">{{videoInfo.updateTime}}</el-col>
           </el-row>
-          <div class="information-introduction" style="width:100%;height:90px;overflow:auto;font-size:12px;" v-text='videoInfo.introduction'></div>
+          <div align="left" class="information-introduction" style="width:100%;height:90px;overflow:auto;font-size:12px;" v-text='videoInfo.info'></div>
         </el-card>
         <div class="player-box" style="width:100%;overflow:hidden;">
           <video-player
@@ -25,10 +24,7 @@
         </div>
       </el-col>
       <el-col :span="8" >
-        <el-card class="author-box" style="width:100%;height:120px;;margin-bottom:20px;"></el-card>
-        <el-card class="video-recommend-box">
-          <span slot="header">相似视频</span>
-        </el-card>
+        <anime-list ref="animeList" style="width:100%;" @indexSelect="listAnimes"></anime-list>
       </el-col>
     </el-row>
   </div>
@@ -37,17 +33,19 @@
 <script>
 // import {formatDate} from '../../utils/index'
 // import demoPlayer from './Player'
+import AnimeList from './AnimeList'
 export default {
-  name: 'VideoPlayers',
-  // components: {demoPlayer},
+  name: 'AnimePlayers',
+  components: {AnimeList},
   data () {
     return {
       videoInfo: {},
-      playerOptions: {}
+      playerOptions: {},
+      playerInfo: []
     }
   },
   methods: {
-    onLive (onCover, onVideo) {
+    onLive (onVideo) {
       this.playerOptions = {
         playbackRates: [0.7, 1.0, 1.5, 2.0], // 播放速度
         autoplay: false, // 如果true,浏览器准备好时开始回放。
@@ -64,7 +62,7 @@ export default {
           }
         ],
         hls: true,
-        poster: onCover, // 你的封面地址
+        poster: '', // 你的封面地址
         notSupportedMessage: '此视频暂无法播放，请稍后再试', // 允许覆盖Video.js无法播放媒体源时显示的默认信息。
         controlBar: {
           timeDivider: true,
@@ -73,28 +71,34 @@ export default {
           fullscreenToggle: true // 全屏按钮
         }
       }
+    },
+    listAnimes () {
+      this.onLive(this.playerInfo[this.$refs.animeList.onRow].videoUrl)
     }
   },
   created: function () {
     var _this = this
-    var videoId = this.$route.params.id
-    var url = 'video/' + videoId
-    this.$axios.get(url).then(resp => {
-      if (resp && resp.data.code === 200) {
-        _this.videoInfo = resp.data.result
-        this.onLive(resp.data.result.cover, resp.data.result.content)
-        // _this.playerOptions.poster = resp.data.result.cover
-        // _this.playerOptions.sources[0] = resp.data.result.content
-        console.log(_this.videoInfo)
-        // console.log('this')
-        // console.log(this)
-        // console.log('_this')
-        // console.log(_this)
+    var animeListId = this.$route.params.id
+    var url1 = '/comiclist/' + animeListId
+    var url2 = '/comics/' + animeListId
+    this.$axios.all([
+      this.$axios.get(url1),
+      this.$axios.get(url2)
+    ]).then(this.$axios.spread((listInfo, comicsInfo) => {
+      if (listInfo && listInfo.data.code === 200) {
+        _this.videoInfo = listInfo.data.result
+        // console.log(listInfo.data.result)
       }
-    })
+      if (comicsInfo && comicsInfo.data.code === 200) {
+        _this.playerInfo = comicsInfo.data.result
+        _this.$refs.animeList.animes = comicsInfo.data.result
+        _this.onLive(_this.playerInfo[0].videoUrl)
+        // console.log(comicsInfo.data.result)
+      }
+    }))
   },
-  filters: {
-  },
+  // filters: {
+  // },
   mounted () {
     // console.log('this')
     // console.log(this)

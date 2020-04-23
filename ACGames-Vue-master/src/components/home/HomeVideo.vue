@@ -1,7 +1,7 @@
 <template>
   <el-card class="box-card">
     <div slot="header">
-      <span style="font-weight: bold;font-size: 20px">游戏视频</span>
+      <span style="font-weight: bold;font-size: 20px">视频推荐</span>
     </div>
     <div style="height:450px;width:100%;margin:0 auto;">
       <el-row :gutter="10" type="flex" class="video-home" justify="space-between">

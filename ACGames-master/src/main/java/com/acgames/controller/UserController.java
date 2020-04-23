@@ -28,6 +28,10 @@ public class UserController {
     public Result getUsername(@PathVariable("id")int id){
         return ResultFactory.buildSuccessResult(userService.findUsernameById(id));
     }
+    @GetMapping("/api/user/{username}")
+    public Result getUserInfo (@PathVariable("username") String username) {
+        return ResultFactory.buildSuccessResult((userService.findByUsername(username)));
+    }
     @GetMapping("/api/admin/user")
     public Result listUsers() {
         return ResultFactory.buildSuccessResult(userService.list());

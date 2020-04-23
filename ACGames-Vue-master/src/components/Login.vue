@@ -48,9 +48,11 @@
           .then(resp => {
             if (resp.data.code === 200) {
               var data = resp.data.result
+              console.log(data)
               _this.$store.commit('login', data)
               var path = _this.$route.query.redirect
-              _this.$router.replace({path: path === '/' || path === undefined ? '/admin/dashboard' : path})
+              console.log(path)
+              _this.$router.replace({path: path === '/index' || path === undefined ? '/' : path})
             } else {
               this.$alert(resp.data.message, '提示', {
                 confirmButtonText: '确定'

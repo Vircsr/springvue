@@ -5,7 +5,6 @@
     </el-aside>
     <el-main>
       <resource-page class="main-area" ref="resourceArea"></resource-page>
-      <!-- <books class="books-area" ref="booksArea"></books> -->
     </el-main>
   </el-container>
 </template>

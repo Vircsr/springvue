@@ -11,7 +11,7 @@
       <a href="#home-video">
         <el-menu-item index="2">
           <i class="el-icon-menu"></i>
-          <span slot="title">游戏视频</span>
+          <span slot="title">视频推荐</span>
         </el-menu-item>
       </a>
     </el-menu>

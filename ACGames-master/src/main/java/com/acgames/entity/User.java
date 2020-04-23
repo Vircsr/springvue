@@ -9,12 +9,6 @@ import javax.validation.constraints.NotEmpty;
 import java.io.Serializable;
 import java.util.List;
 
-/**
- * User entity.
- *
- * @author Evan
- * @date 2019/4
- */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

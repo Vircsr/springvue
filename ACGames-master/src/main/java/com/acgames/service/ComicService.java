@@ -15,8 +15,7 @@ public class ComicService {
     @Autowired
     ComicListService comicListService;
 
-    public List<Comic> listByComicList(int comic_list_id){
-        ComicList comicList = comicListService.get(comic_list_id);
-        return comicDAO.findAllByComicList(comicList);
+    public List<Comic> listByComicList(int comicListId){
+        return comicDAO.findAllByComicListIdOrderBySectionIdAsc(comicListId);
     }
 }

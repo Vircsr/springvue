@@ -33,18 +33,19 @@ public class ShiroConfiguration {
     public ShiroFilterFactoryBean shiroFilter(SecurityManager securityManager) {
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
         shiroFilterFactoryBean.setSecurityManager(securityManager);
-        shiroFilterFactoryBean.setLoginUrl("/nowhere");
-
+        shiroFilterFactoryBean.setLoginUrl("/login");
+        shiroFilterFactoryBean.setSuccessUrl("/");
         Map<String, String> filterChainDefinitionMap = new LinkedHashMap<String, String>();
         Map<String, Filter> customizedFilter = new HashMap<>();  // 自定义过滤器设置 1
-
         customizedFilter.put("url", getURLPathMatchingFilter()); // 自定义过滤器设置 2，命名，需在设置过滤路径前
 
-        filterChainDefinitionMap.put("/api/authentication", "authc"); // 防鸡贼登录
+        filterChainDefinitionMap.put("/api/authentication", "authc");
         filterChainDefinitionMap.put("/api/menu", "authc");
         filterChainDefinitionMap.put("/api/admin/**", "authc");
-
         filterChainDefinitionMap.put("/api/admin/**", "url");  // 自定义过滤器设置 3，设置过滤路径
+//退出
+//        filterChainDefinitionMap.put("/api/logout","logout");
+//        filterChainDefinitionMap.put("/**","authc");
 
         shiroFilterFactoryBean.setFilters(customizedFilter); // 自定义过滤器设置 4，启用
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
@@ -55,6 +56,7 @@ public class ShiroConfiguration {
         return new URLPathMatchingFilter();
     }
 
+//安全管理配置
     @Bean
     public SecurityManager securityManager() {
         DefaultWebSecurityManager securityManager = new DefaultWebSecurityManager();
@@ -76,14 +78,14 @@ public class ShiroConfiguration {
         simpleCookie.setMaxAge(259200);
         return simpleCookie;
     }
-
+//认证器配置
     @Bean
     public WJRealm getWJRealm() {
         WJRealm wjRealm = new WJRealm();
         wjRealm.setCredentialsMatcher(hashedCredentialsMatcher());
         return wjRealm;
     }
-
+//加密方式配置
     @Bean
     public HashedCredentialsMatcher hashedCredentialsMatcher() {
         HashedCredentialsMatcher hashedCredentialsMatcher = new HashedCredentialsMatcher();
@@ -91,7 +93,7 @@ public class ShiroConfiguration {
         hashedCredentialsMatcher.setHashIterations(2);
         return hashedCredentialsMatcher;
     }
-
+//    开启@RequirePermission注解的配置
     @Bean
     public AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor(SecurityManager securityManager) {
         AuthorizationAttributeSourceAdvisor authorizationAttributeSourceAdvisor = new AuthorizationAttributeSourceAdvisor();

@@ -16,8 +16,7 @@ import org.springframework.util.ObjectUtils;
 import java.util.Set;
 
 /**
- * @author Evan
- * @date 2019/10
+ * Realm 负责从数据源中获取数据并加工后传给 SecurityManager
  */
 public class WJRealm extends AuthorizingRealm {
 

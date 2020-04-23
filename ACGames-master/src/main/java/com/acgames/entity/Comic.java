@@ -1,5 +1,6 @@
 package com.acgames.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.ToString;
@@ -18,14 +19,19 @@ public class Comic {
     @Column(name = "id")
     private int id;
 
-    @ManyToOne
-    @JoinColumn(name = "comic_list_id")
-    private ComicList comicList;
-
-    private int section_id;
-    private String section_name;
-    private String video_url;
-    private Timestamp create_time;
-    private Timestamp update_time;
+    @Column(name = "comic_list_id")
+    private int comicListId;
+    @Column(name = "section_id")
+    private int sectionId;
+    @Column(name = "section_name")
+    private String sectionName;
+    @Column(name = "video_url")
+    private String videoUrl;
+    @Column(name = "create_time")
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    private Timestamp createTime;
+    @Column(name = "update_time")
+    @JsonFormat(shape=JsonFormat.Shape.STRING,pattern="yyyy-MM-dd HH:mm:ss",timezone="GMT+8")
+    private Timestamp updateTime;
 
 }

@@ -60,7 +60,8 @@ import {
   MessageBox,
   Message,
   Notification,
-  PageHeader
+  PageHeader,
+  Avatar
 } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import VideoPlayer from 'vue-video-player'
@@ -118,7 +119,7 @@ Vue.use(TimelineItem)
 Vue.use(Link)
 Vue.use(Divider)
 Vue.use(Image)
-
+Vue.use(Avatar)
 Vue.use(Loading.directive)
 
 Vue.prototype.$loading = Loading.service
@@ -139,17 +140,15 @@ Vue.config.productionTip = false
 Vue.use(mavonEditor)
 
 router.beforeEach((to, from, next) => {
-    if (store.state.username && to.path.startsWith('/admin')) {
+    if (store.state.usernames && to.path.startsWith('/admin')) {
       initAdminMenu(router, store)
     }
-    if (store.state.username && to.path.startsWith('/login')) {
-      next({
-        name: 'Dashboard'
-      })
+    if (store.state.usernames && to.path.startsWith('/login')) {
+      next()
     }
     // 如果前端没有登录信息则直接拦截，如果有则判断后端是否正常登录（防止构造参数绕过）
     if (to.meta.requireAuth) {
-      if (store.state.username) {
+      if (store.state.usernames) {
         axios.get('/authentication').then(resp => {
           if (resp) {
             next()

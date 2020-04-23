@@ -35,6 +35,11 @@ public class VideoController {
 
     @GetMapping("/api/video/{id}")
     public Result playVideo(@PathVariable("id") int id){
-        return ResultFactory.buildSuccessResult((videoService.findById(id)));
+        return ResultFactory.buildSuccessResult(videoService.findById(id));
+    }
+
+    @GetMapping("/api/videos/{authid}")
+    public Result listByAuthid(@PathVariable("authid") int authid){
+        return ResultFactory.buildSuccessResult(videoService.listByAuthid(authid));
     }
 }

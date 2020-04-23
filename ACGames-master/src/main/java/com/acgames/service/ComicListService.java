@@ -3,6 +3,7 @@ package com.acgames.service;
 import com.acgames.dao.ComicListDAO;
 import com.acgames.entity.ComicList;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +24,8 @@ public class ComicListService {
     }
 
     public List<ComicList> topTenByLike(){
-        Sort sort = Sort.by(Sort.Direction.DESC,"like");
-        return comicListDAO.findAll(sort);
+        List<ComicList> list = comicListDAO.findLikeTopTen();
+        return list;
     }
 //    public ComicList get(String name){
 //        ComicList comicList = comicListDAO.findByComic_name(name);

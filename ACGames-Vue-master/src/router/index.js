@@ -23,22 +23,42 @@ export default new Router({
         {
           path: '/index',
           name: 'AppIndex',
-          component: () => import('../components/home/AppIndex')
+          component: () => import('../components/home/AppIndex'),
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/jotter',
           name: 'Jotter',
-          component: () => import('../components/jotter/Articles')
+          component: () => import('../components/jotter/Articles'),
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/jotter/article',
           name: 'Article',
-          component: () => import('../components/jotter/ArticleDetails')
+          component: () => import('../components/jotter/ArticleDetails'),
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/videoplayers/:id',
           name: 'VideoPlayers',
-          component: () => import('../components/players/VideoPlayers')
+          component: () => import('../components/players/VideoPlayers'),
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/animeplayers/:id',
+          name: 'AnimePlayers',
+          component: () => import('../components/players/AnimePlayers'),
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/admin/content/editor',
@@ -51,7 +71,18 @@ export default new Router({
         {
           path: '/library',
           name: 'Library',
-          component: () => import('../components/library/LibraryIndex')
+          component: () => import('../components/library/LibraryIndex'),
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/personage',
+          name: 'Personage',
+          component: () => import('../components/personage/PersonageIndex'),
+          meta: {
+            requireAuth: true
+          }
         }
       ]
     },
@@ -68,6 +99,7 @@ export default new Router({
     {
       path: '/admin',
       name: 'Admin',
+      redirect: '/admin/dashboard',
       component: () => import('../components/admin/AdminIndex'),
       meta: {
         requireAuth: true
@@ -110,22 +142,42 @@ export const createRouter = routes => new Router({
         {
           path: '/index',
           name: 'AppIndex',
-          component: () => import('../components/home/AppIndex')
+          component: () => import('../components/home/AppIndex'),
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/jotter',
           name: 'Jotter',
-          component: () => import('../components/jotter/Articles')
+          component: () => import('../components/jotter/Articles'),
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/jotter/article',
           name: 'Article',
-          component: () => import('../components/jotter/ArticleDetails')
+          component: () => import('../components/jotter/ArticleDetails'),
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/videoplayers/:id',
           name: 'VideoPlayers',
-          component: () => import('../components/players/VideoPlayers')
+          component: () => import('../components/players/VideoPlayers'),
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/animeplayers/:id',
+          name: 'AnimePlayers',
+          component: () => import('../components/players/AnimePlayers'),
+          meta: {
+            requireAuth: true
+          }
         },
         {
           path: '/admin/content/editor',
@@ -138,7 +190,18 @@ export const createRouter = routes => new Router({
         {
           path: '/library',
           name: 'Library',
-          component: () => import('../components/library/LibraryIndex')
+          component: () => import('../components/library/LibraryIndex'),
+          meta: {
+            requireAuth: true
+          }
+        },
+        {
+          path: '/personage',
+          name: 'Personage',
+          component: () => import('../components/personage/PersonageIndex'),
+          meta: {
+            requireAuth: true
+          }
         }
       ]
     },
@@ -155,6 +218,7 @@ export const createRouter = routes => new Router({
     {
       path: '/admin',
       name: 'Admin',
+      redirect: '/admin/dashboard',
       component: () => import('../components/admin/AdminIndex'),
       meta: {
         requireAuth: true

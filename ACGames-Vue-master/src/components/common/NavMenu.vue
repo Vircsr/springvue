@@ -20,6 +20,7 @@
         v-model="keywords"
         disabled>
       </el-input>
+       <el-button type="text" style="position:absolute;margin-top: 12px;right:20px;" @click="logout">{{$store.state.usernames}}</el-button>
     </el-menu>
   </div>
 </template>
@@ -31,11 +32,23 @@
       return {
         navList: [
           {name: '/index', navItem: '首页'},
-          {name: '/jotter', navItem: '笔记本'},
-          {name: '/library', navItem: '所有资源'},
-          {name: '/login', navItem: '管理中心'}
+          {name: '/library', navItem: '视频资源'},
+          {name: '/personage', navItem: '个人中心'},
+          {name: '/admin', navItem: '后台管理'}
         ],
         keywords: ''
+      }
+    },
+    methods: {
+      logout () {
+        var _this = this
+        this.$axios.get('/logout').then(resp => {
+          if (resp && resp.data.code === 200) {
+            _this.$store.commit('logout')
+            _this.$router.replace('/login')
+            console.log('logout')
+          }
+        }).catch(failResponse => {})
       }
     },
     computed: {
