@@ -8,14 +8,16 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "variety")
+@Table(name = "recommends")
 @ToString
-@JsonIgnoreProperties({ "handler","hibernateLazyInitializer" })
-public class Variety {
+@JsonIgnoreProperties({"handler","hibernateLazyInitializer"})
+public class Recommends {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
-    private String name;
+    @ManyToOne
+    @JoinColumn(name = "video_id")
+    private Video video;
 }

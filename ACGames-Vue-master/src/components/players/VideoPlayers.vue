@@ -1,18 +1,7 @@
 <template>
-  <div class="video-container" style="width:1000px;height:600px;margin:auto;margin-top:20px;">
+  <div class="video-container" style="width:900px;height:700px;margin:auto;margin-top:20px;">
     <el-row :gutter="20" style="width:100%;height:100%;">
-      <el-col :span="16">
-        <el-card class="video-information" style="width:100%;height:120px;margin-bottom:10px;">
-          <el-row :gutter="5" style="height:25px;overflow: hidden;">
-            <el-col :span="12" class="information-title" style="height:25px;" align="left">{{videoInfo.title}}</el-col>
-            <el-col :span="3" class="information-hits" style="height:25px;line-height:25px;font-size:12px;">播放数:{{videoInfo.hits}}</el-col>
-            <el-col :span="3" class="information-like" style="height:25px;">
-              <el-button type="danger" style="height:25px;" size="mini">{{videoInfo.likes}}</el-button>
-            </el-col>
-            <el-col :span="6" class="information-time" style="height:25px;line-height:25px;font-size:12px;">{{videoInfo.updateTime}}</el-col>
-          </el-row>
-          <div class="information-introduction" style="width:100%;height:90px;overflow:auto;font-size:12px;" v-text='videoInfo.introduction'></div>
-        </el-card>
+      <el-col :span="24">
         <div class="player-box" style="width:100%;overflow:hidden;">
           <video-player
             ref="videoPlayer"
@@ -23,11 +12,21 @@
             @pause="onPlayerPause($event)"
           />
         </div>
-      </el-col>
-      <el-col :span="8" >
-        <el-card class="author-box" style="width:100%;height:120px;;margin-bottom:20px;"></el-card>
-        <el-card class="video-recommend-box">
-          <span slot="header">相似视频</span>
+        <el-card class="video-information" style="width:100%;height:120px;margin-bottom:10px;">
+          <el-row :gutter="5" style="height:25px;overflow: hidden;">
+            <el-col :span="14" class="information-title" style="height:25px;" align="left">{{videoInfo.title}}</el-col>
+            <!-- <el-col :span="3" class="information-hits" style="height:25px;line-height:25px;font-size:12px;">播放数:{{videoInfo.hits}}</el-col> -->
+            <el-col :span="4" class="information-like" style="height:25px;">
+              <el-rate
+                v-model="value"
+                :colors="colors"
+                @change="updateGrade"
+                style="height:25px;width:100%;">
+              </el-rate>
+            </el-col>
+            <el-col :span="6" class="information-time" style="height:25px;line-height:25px;font-size:12px;">{{videoInfo.updateTime}}</el-col>
+          </el-row>
+          <div class="information-introduction" style="width:100%;height:90px;overflow:auto;font-size:12px;" v-text='videoInfo.introduction'></div>
         </el-card>
       </el-col>
     </el-row>
@@ -35,6 +34,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 // import {formatDate} from '../../utils/index'
 // import demoPlayer from './Player'
 export default {
@@ -43,7 +43,9 @@ export default {
   data () {
     return {
       videoInfo: {},
-      playerOptions: {}
+      playerOptions: {},
+      value: null,
+      colors: ['#99A9BF', '#F7BA2A', '#FF9900']
     }
   },
   methods: {
@@ -73,6 +75,32 @@ export default {
           fullscreenToggle: true // 全屏按钮
         }
       }
+    },
+    updateGrade () {
+      var thisTime = moment(new Date()).format('YYYY-MM-DD hh:mm:ss')
+      this.$axios.post('/video/grade', {
+        userId: this.$store.state.user.id,
+        videoId: this.videoInfo.id,
+        grade: this.value,
+        createTime: thisTime
+      }).then(resp => {
+        if (resp && resp.data.code === 200) {
+          console.log(resp.data)
+          this.$message({
+            message: '评分成功！',
+            type: 'success'
+          })
+        }
+      })
+    },
+    addHits () {
+       this.$axios.post('/video/video/hits', {
+        id: this.videoInfo.id
+      }).then(resp => {
+        if (resp && resp.data.code === 200) {
+          console.log(resp.data)
+        }
+      })
     }
   },
   created: function () {
@@ -83,22 +111,13 @@ export default {
       if (resp && resp.data.code === 200) {
         _this.videoInfo = resp.data.result
         this.onLive(resp.data.result.cover, resp.data.result.content)
-        // _this.playerOptions.poster = resp.data.result.cover
-        // _this.playerOptions.sources[0] = resp.data.result.content
-        console.log(_this.videoInfo)
-        // console.log('this')
-        // console.log(this)
-        // console.log('_this')
-        // console.log(_this)
       }
     })
   },
-  filters: {
-  },
+  // filters: {
+  // },
   mounted () {
-    // console.log('this')
-    // console.log(this)
-    // this.onLive(this.videoInfo.cover, this.videoInfo.content)
+    // this.addHits()
   },
   computed: {
     // player () {

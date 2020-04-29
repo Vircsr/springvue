@@ -4,7 +4,6 @@ import com.acgames.dao.UserDAO;
 import com.acgames.dto.UserDTO;
 import com.acgames.entity.AdminRole;
 import com.acgames.entity.User;
-import com.acgames.entity.Variety;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.springframework.beans.factory.annotation.Autowired;

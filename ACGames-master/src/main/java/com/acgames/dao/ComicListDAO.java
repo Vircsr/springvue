@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface ComicListDAO extends JpaRepository<ComicList,Integer> {
     ComicList findByComicName(String comicName);
-    List<ComicList> findAllByOrderByLikeDesc();
-    @Query(nativeQuery=true,value ="select * from comic_list order by 'like' desc limit 10")
+    List<ComicList> findAllByOrderByLikesDesc();
+    @Query(nativeQuery=true,value ="select * from comic_list order by likes desc limit 10")
     List<ComicList> findLikeTopTen();
 }

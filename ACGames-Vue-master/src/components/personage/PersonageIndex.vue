@@ -35,27 +35,27 @@
       <el-tab-pane label="用户信息" style="width:80%;height:80%;margin-left:10%;margin-right:10%;margin-top:5%;">
         <el-form ref="userform" label-width="120px">
           <el-form-item label="用户ID：">
-            <span style="float: left">{{userform.id}}</span>
+            <span style="float: left">{{$store.state.user.id}}</span>
           </el-form-item>
           <el-form-item label="用户名：">
-            <span style="float: left">{{userform.username}}</span>
+            <span style="float: left">{{$store.state.user.username}}</span>
           </el-form-item>
           <el-form-item label="昵称：">
-            <span style="float: left">{{userform.name}}</span>
+            <span style="float: left">{{$store.state.user.name}}</span>
           </el-form-item>
           <el-form-item label="联系方式：">
-            <span style="float: left">{{userform.phone}}</span>
+            <span style="float: left">{{$store.state.user.phone}}</span>
           </el-form-item>
           <el-form-item label="邮箱：">
-            <span style="float: left">{{userform.email}}</span>
+            <span style="float: left">{{$store.state.user.email}}</span>
           </el-form-item>
-          <el-form-item>
+          <!-- <el-form-item>
             <el-button type="primary" @click="onSubmit">修改</el-button>
-          </el-form-item>
+          </el-form-item> -->
         </el-form>
       </el-tab-pane>
       <el-tab-pane label="投稿中心">
-        <contribution-manage></contribution-manage>
+        <contribution-manage ref="videoManage" class="videoManage"></contribution-manage>
       </el-tab-pane>
     </el-tabs>
   </el-card>
@@ -70,49 +70,22 @@ import ContributionManage from './ContributionManage'
     data () {
       return {
         tabPosition: 'left',
-        userform: [],
-        videoform: [],
         dialogFormVisible: false
       }
     },
-    // created: function () {
-    //   this.loadUserInfo()
-    // },
     mounted () {
-      this.loadUserInfo()
-      // console.log('mounted!')
+      this.loadVideoInfo()
     },
     methods: {
       onSubmit () {
         console.log('submit!')
       },
-      loadUserInfo () {
-        var _this = this
-        var userid
-        var url1 = '/user/' + this.$store.state.usernames
-        this.$axios.get(url1).then(resp => {
-          if (resp && resp.data.code === 200) {
-            _this.userform = resp.data.result
-            userid = resp.data.result.id
-            console.log(userid)
-            var url2 = '/videos/' + userid
-            this.$axios.get(url2)
-          }
-        }).then(
-          
-        )
-      },
       loadVideoInfo () {
-        let userid = this.userform.id
-        console.log(this.userform.id)
-        console.log(userid)
-        // console.log('loagvideo')
-        let url2 = '/videos/' + userid
+        let url2 = '/videos/' + this.$store.state.user.id
+        console.log(this.$store.state.user.id)
         this.$axios.get(url2).then(resp => {
           if (resp && resp.data.code === 200) {
-            this.videoform = resp.data.result
-            console.log(this.videoform)
-            console.log('200')
+            this.$refs.videoManage.tableData = resp.data.result
           }
         })
       }

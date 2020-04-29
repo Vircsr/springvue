@@ -3,30 +3,19 @@
     <div slot="header">
       <span style="font-weight: bold;font-size: 20px">视频推荐</span>
     </div>
-    <div style="height:450px;width:100%;margin:0 auto;">
-      <el-row :gutter="10" type="flex" class="video-home" justify="space-between">
-        <el-col :span="12">
-          <div class="video-card"></div>
-        </el-col>
-        <el-col :span="12">
-          <div class="video-card"></div>
-        </el-col>
-        <el-col :span="12">
-          <div class="video-card"></div>
-        </el-col>
-      </el-row>
-      <br />
-      <el-row :gutter="10" type="flex" class="video-home" justify="space-between">
-        <el-col :span="12">
-          <div class="video-card"></div>
-        </el-col>
-        <el-col :span="12">
-          <div class="video-card"></div>
-        </el-col>
-        <el-col :span="12">
-          <div class="video-card"></div>
-        </el-col>
-      </el-row>
+    <div class="recommend-box">
+      <el-card style="width:280px; height:200px;margin-bottom:20px;margin-right:20px;float:left;" class="resource" body-style="padding:10px" shadow="hover"
+        v-for="item in videos"
+        :key="item.id">
+        <router-link :to="{name:'VideoPlayers', params:{id: item.video.id}}">
+          <div v class="cover">
+            <img :src="item.video.cover" alt="无法加载图片">
+          </div>
+          <div class="title">
+            <span>{{item.video.title}}</span>
+          </div>
+        </router-link>
+      </el-card>
     </div>
   </el-card>
 </template>
@@ -38,6 +27,21 @@ export default {
     return {
       videos: []
     }
+  },
+  methods: {
+    loadRecommends () {
+      var _this = this
+      var url = '/videos/' + this.$store.state.user.id + '/recommend'
+      this.$axios.get(url).then(resp => {
+        if (resp && resp.data.code === 200) {
+          _this.videos = resp.data.result
+          console.log(resp.data.result)
+        }
+      })
+    }
+  },
+  mounted: function () {
+    this.loadRecommends()
   }
 }
 </script>

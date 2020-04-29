@@ -35,8 +35,9 @@
       handleRowChange (row) {
         this.onRow = row.sectionId - 1
         this.$emit('indexSelect')
-        console.log('click')
-        console.log(row)
+        // console.log(this.onRow)
+        // console.log('click')
+        // console.log(row)
       }
     }
   }

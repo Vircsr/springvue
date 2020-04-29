@@ -6,7 +6,8 @@
           <el-row :gutter="5" style="height:25px;overflow: hidden;">
             <el-col :span="15" class="information-title" style="height:25px;" align="left">{{videoInfo.comicName}}</el-col>
             <el-col :span="3" class="information-like" style="height:25px;">
-              <el-button type="danger" style="height:25px;width:100%;" size="mini">{{videoInfo.like}}</el-button>
+              <el-button type="danger" style="height:25px;width:100%;" size="mini" icon="el-icon-star-on" @click="likethis" :disabled="isAbled">
+                {{videoInfo.likes}}</el-button>
             </el-col>
             <el-col :span="6" class="information-time" style="height:25px;line-height:25px;font-size:12px;">{{videoInfo.updateTime}}</el-col>
           </el-row>
@@ -31,6 +32,7 @@
 </template>
 
 <script>
+// import loveimg from '@/assets/img/icon/love.png'
 // import {formatDate} from '../../utils/index'
 // import demoPlayer from './Player'
 import AnimeList from './AnimeList'
@@ -41,7 +43,8 @@ export default {
     return {
       videoInfo: {},
       playerOptions: {},
-      playerInfo: []
+      playerInfo: [],
+      isAbled: false
     }
   },
   methods: {
@@ -74,6 +77,26 @@ export default {
     },
     listAnimes () {
       this.onLive(this.playerInfo[this.$refs.animeList.onRow].videoUrl)
+      console.log(this.$refs.animeList.onRow)
+    },
+    likethis () {
+      this.$axios.post('/comiclist/likeit', {
+        id: this.videoInfo.id
+      }).then(resp => {
+        if (resp && resp.data.code === 200) {
+          this.isAbled = true
+          this.videoInfo.likes = this.videoInfo.likes + 1
+          this.$message({
+            message: '多谢支持！',
+            type: 'success'
+          })
+        } else {
+          this.$message({
+            message: '操作失败！',
+            type: 'error'
+          })
+        }
+      })
     }
   },
   created: function () {
@@ -105,9 +128,12 @@ export default {
     // this.onLive(this.videoInfo.cover, this.videoInfo.content)
   },
   computed: {
-    // player () {
-    //   return this.$refs.videoPlayer.player
-    // }
+    player () {
+      return this.$refs.videoPlayer.player
+    },
+    pause () {
+      return this.$refs.videoPlayer.pause
+    }
   }
 }
 </script>

@@ -1,271 +1,407 @@
 /*
-Navicat MySQL Data Transfer
+ Navicat MySQL Data Transfer
 
-Source Server         : MySQL3306
-Source Server Version : 80015
-Source Host           : localhost:3306
-Source Database       : wj
+ Source Server         : test
+ Source Server Type    : MySQL
+ Source Server Version : 80019
+ Source Host           : localhost:3306
+ Source Schema         : wj
 
-Target Server Type    : MYSQL
-Target Server Version : 80015
-File Encoding         : 65001
+ Target Server Type    : MySQL
+ Target Server Version : 80019
+ File Encoding         : 65001
 
-Date: 2020-04-12 09:45:45
+ Date: 29/04/2020 09:05:32
 */
 
-SET FOREIGN_KEY_CHECKS=0;
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for admin_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_menu`;
-CREATE TABLE `admin_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `path` varchar(64) DEFAULT NULL,
-  `name` varchar(64) DEFAULT NULL,
-  `name_zh` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `icon_cls` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
-  `component` varchar(64) DEFAULT NULL,
-  `parent_id` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `admin_menu`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `path` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `name_zh` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `icon_cls` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `component` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `parent_id` int(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 10 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_menu
 -- ----------------------------
-INSERT INTO `admin_menu` VALUES ('1', '/admin', 'AdminIndex', '首页', 'el-icon-s-home', 'AdminIndex', '0');
-INSERT INTO `admin_menu` VALUES ('2', '/admin/dashboard', 'DashboardAdmin', '运行情况', null, 'dashboard/admin/index', '1');
-INSERT INTO `admin_menu` VALUES ('3', '/admin', 'User', '用户管理', 'el-icon-user', 'AdminIndex', '0');
-INSERT INTO `admin_menu` VALUES ('4', '/admin', 'Content', '内容管理', 'el-icon-tickets', 'AdminIndex', '0');
-INSERT INTO `admin_menu` VALUES ('5', '/admin', 'System', '系统配置', 'el-icon-s-tools', 'AdminIndex', '0');
-INSERT INTO `admin_menu` VALUES ('6', '/admin/user/profile', 'Profile', '用户信息', null, 'user/UserProfile', '3');
-INSERT INTO `admin_menu` VALUES ('7', '/admin/user/role', 'Role', '角色配置', null, 'user/Role', '3');
-INSERT INTO `admin_menu` VALUES ('8', '/admin/content/book', 'BookManagement', '图书管理', null, 'content/BookManagement', '4');
-INSERT INTO `admin_menu` VALUES ('9', '/admin/content/banner', 'BannerManagement', '广告管理', null, 'content/BannerManagement', '4');
-INSERT INTO `admin_menu` VALUES ('10', '/admin/content/article', 'ArticleManagement', '文章管理', null, 'content/ArticleManagement', '4');
+INSERT INTO `admin_menu` VALUES (1, '/admin', 'AdminIndex', '首页', 'el-icon-s-home', 'AdminIndex', 0);
+INSERT INTO `admin_menu` VALUES (2, '/admin/dashboard', 'DashboardAdmin', '运行情况', NULL, 'dashboard/admin/index', 1);
+INSERT INTO `admin_menu` VALUES (3, '/admin', 'User', '用户管理', 'el-icon-user', 'AdminIndex', 0);
+INSERT INTO `admin_menu` VALUES (4, '/admin', 'Content', '内容管理', 'el-icon-tickets', 'AdminIndex', 0);
+INSERT INTO `admin_menu` VALUES (5, '/admin', 'System', '系统配置', 'el-icon-s-tools', 'AdminIndex', 0);
+INSERT INTO `admin_menu` VALUES (6, '/admin/user/profile', 'Profile', '用户信息', NULL, 'user/UserProfile', 3);
+INSERT INTO `admin_menu` VALUES (7, '/admin/user/role', 'Role', '角色配置', NULL, 'user/Role', 3);
+INSERT INTO `admin_menu` VALUES (10, '/admin/content/article', 'ArticleManagement', '文章管理', NULL, 'content/ArticleManagement', 4);
 
 -- ----------------------------
 -- Table structure for admin_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_permission`;
-CREATE TABLE `admin_permission` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `desc_` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+CREATE TABLE `admin_permission`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `desc_` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `url` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_permission
 -- ----------------------------
-INSERT INTO `admin_permission` VALUES ('1', 'users_management', '用户管理', '/api/admin/user');
-INSERT INTO `admin_permission` VALUES ('2', 'roles_management', '角色管理', '/api/admin/role');
-INSERT INTO `admin_permission` VALUES ('3', 'content_management', '内容管理', '/api/admin/content');
+INSERT INTO `admin_permission` VALUES (1, 'users_management', '用户管理', '/api/admin/user');
+INSERT INTO `admin_permission` VALUES (2, 'roles_management', '角色管理', '/api/admin/role');
+INSERT INTO `admin_permission` VALUES (3, 'content_management', '内容管理', '/api/admin/content');
 
 -- ----------------------------
 -- Table structure for admin_role
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_role`;
-CREATE TABLE `admin_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `name_zh` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `enabled` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+CREATE TABLE `admin_role`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name_zh` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `enabled` tinyint(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_role
 -- ----------------------------
-INSERT INTO `admin_role` VALUES ('1', 'sysAdmin', '系统管理员', '1');
-INSERT INTO `admin_role` VALUES ('2', 'contentManager', '内容管理员', '1');
-INSERT INTO `admin_role` VALUES ('3', 'visitor', '访客', '1');
-INSERT INTO `admin_role` VALUES ('9', 'test', '测试角色', '1');
+INSERT INTO `admin_role` VALUES (1, 'sysAdmin', '系统管理员', 1);
+INSERT INTO `admin_role` VALUES (2, 'contentManager', '内容管理员', 1);
+INSERT INTO `admin_role` VALUES (3, 'visitor', '访客', 1);
+INSERT INTO `admin_role` VALUES (4, 'user', '用户', 1);
+INSERT INTO `admin_role` VALUES (9, 'test', '测试角色', 1);
 
 -- ----------------------------
 -- Table structure for admin_role_menu
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_role_menu`;
-CREATE TABLE `admin_role_menu` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `rid` int(11) DEFAULT NULL,
-  `mid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=194 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `admin_role_menu`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `rid` int(0) NULL DEFAULT NULL,
+  `mid` int(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 193 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_role_menu
 -- ----------------------------
-INSERT INTO `admin_role_menu` VALUES ('19', '4', '1');
-INSERT INTO `admin_role_menu` VALUES ('20', '4', '2');
-INSERT INTO `admin_role_menu` VALUES ('21', '3', '1');
-INSERT INTO `admin_role_menu` VALUES ('22', '3', '2');
-INSERT INTO `admin_role_menu` VALUES ('23', '9', '1');
-INSERT INTO `admin_role_menu` VALUES ('24', '9', '2');
-INSERT INTO `admin_role_menu` VALUES ('121', '1', '1');
-INSERT INTO `admin_role_menu` VALUES ('122', '1', '2');
-INSERT INTO `admin_role_menu` VALUES ('123', '1', '3');
-INSERT INTO `admin_role_menu` VALUES ('124', '1', '6');
-INSERT INTO `admin_role_menu` VALUES ('125', '1', '7');
-INSERT INTO `admin_role_menu` VALUES ('126', '1', '4');
-INSERT INTO `admin_role_menu` VALUES ('127', '1', '8');
-INSERT INTO `admin_role_menu` VALUES ('128', '1', '9');
-INSERT INTO `admin_role_menu` VALUES ('129', '1', '10');
-INSERT INTO `admin_role_menu` VALUES ('130', '1', '5');
-INSERT INTO `admin_role_menu` VALUES ('188', '2', '1');
-INSERT INTO `admin_role_menu` VALUES ('189', '2', '2');
-INSERT INTO `admin_role_menu` VALUES ('190', '2', '4');
-INSERT INTO `admin_role_menu` VALUES ('191', '2', '8');
-INSERT INTO `admin_role_menu` VALUES ('192', '2', '9');
-INSERT INTO `admin_role_menu` VALUES ('193', '2', '10');
+INSERT INTO `admin_role_menu` VALUES (19, 4, 1);
+INSERT INTO `admin_role_menu` VALUES (20, 4, 2);
+INSERT INTO `admin_role_menu` VALUES (21, 3, 1);
+INSERT INTO `admin_role_menu` VALUES (22, 3, 2);
+INSERT INTO `admin_role_menu` VALUES (23, 9, 1);
+INSERT INTO `admin_role_menu` VALUES (24, 9, 2);
+INSERT INTO `admin_role_menu` VALUES (121, 1, 1);
+INSERT INTO `admin_role_menu` VALUES (122, 1, 2);
+INSERT INTO `admin_role_menu` VALUES (123, 1, 3);
+INSERT INTO `admin_role_menu` VALUES (124, 1, 6);
+INSERT INTO `admin_role_menu` VALUES (125, 1, 7);
+INSERT INTO `admin_role_menu` VALUES (126, 1, 4);
+INSERT INTO `admin_role_menu` VALUES (127, 1, 8);
+INSERT INTO `admin_role_menu` VALUES (128, 1, 9);
+INSERT INTO `admin_role_menu` VALUES (129, 1, 10);
+INSERT INTO `admin_role_menu` VALUES (130, 1, 5);
+INSERT INTO `admin_role_menu` VALUES (188, 2, 1);
+INSERT INTO `admin_role_menu` VALUES (189, 2, 2);
+INSERT INTO `admin_role_menu` VALUES (190, 2, 4);
+INSERT INTO `admin_role_menu` VALUES (191, 2, 8);
+INSERT INTO `admin_role_menu` VALUES (192, 2, 9);
+INSERT INTO `admin_role_menu` VALUES (193, 2, 10);
 
 -- ----------------------------
 -- Table structure for admin_role_permission
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_role_permission`;
-CREATE TABLE `admin_role_permission` (
-  `id` int(20) NOT NULL AUTO_INCREMENT,
-  `rid` int(20) DEFAULT NULL,
-  `pid` int(20) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_role_permission_role_1` (`rid`),
-  KEY `fk_role_permission_permission_1` (`pid`)
-) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8;
+CREATE TABLE `admin_role_permission`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `rid` int(0) NULL DEFAULT NULL,
+  `pid` int(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_role_permission_role_1`(`rid`) USING BTREE,
+  INDEX `fk_role_permission_permission_1`(`pid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 139 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_role_permission
 -- ----------------------------
-INSERT INTO `admin_role_permission` VALUES ('83', '5', '3');
-INSERT INTO `admin_role_permission` VALUES ('108', '1', '1');
-INSERT INTO `admin_role_permission` VALUES ('109', '1', '2');
-INSERT INTO `admin_role_permission` VALUES ('110', '1', '3');
-INSERT INTO `admin_role_permission` VALUES ('139', '2', '3');
+INSERT INTO `admin_role_permission` VALUES (12, 1, 2);
+INSERT INTO `admin_role_permission` VALUES (33, 1, 3);
+INSERT INTO `admin_role_permission` VALUES (83, 5, 3);
+INSERT INTO `admin_role_permission` VALUES (108, 1, 1);
+INSERT INTO `admin_role_permission` VALUES (139, 2, 3);
 
 -- ----------------------------
 -- Table structure for admin_user_role
 -- ----------------------------
 DROP TABLE IF EXISTS `admin_user_role`;
-CREATE TABLE `admin_user_role` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` int(11) DEFAULT NULL,
-  `rid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_operator_role_operator_1` (`uid`),
-  KEY `fk_operator_role_role_1` (`rid`)
-) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8;
+CREATE TABLE `admin_user_role`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `uid` int(0) NULL DEFAULT NULL,
+  `rid` int(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `fk_operator_role_operator_1`(`uid`) USING BTREE,
+  INDEX `fk_operator_role_role_1`(`rid`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 68 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of admin_user_role
 -- ----------------------------
-INSERT INTO `admin_user_role` VALUES ('40', '24', '2');
-INSERT INTO `admin_user_role` VALUES ('63', '3', '2');
-INSERT INTO `admin_user_role` VALUES ('64', '1', '1');
-INSERT INTO `admin_user_role` VALUES ('67', '2', '3');
+INSERT INTO `admin_user_role` VALUES (40, 24, 2);
+INSERT INTO `admin_user_role` VALUES (63, 3, 2);
+INSERT INTO `admin_user_role` VALUES (64, 1, 1);
+INSERT INTO `admin_user_role` VALUES (68, 2, 1);
 
 -- ----------------------------
--- Table structure for book
+-- Table structure for comic
 -- ----------------------------
-DROP TABLE IF EXISTS `book`;
-CREATE TABLE `book` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `cover` varchar(255) DEFAULT '',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `author` varchar(255) DEFAULT '',
-  `date` varchar(20) DEFAULT '',
-  `press` varchar(255) DEFAULT '',
-  `abs` varchar(255) DEFAULT NULL,
-  `cid` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_book_category_on_cid` (`cid`),
-  CONSTRAINT `fk_book_category_on_cid` FOREIGN KEY (`cid`) REFERENCES `category` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=109 DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `comic`;
+CREATE TABLE `comic`  (
+  `id` int(0) NOT NULL,
+  `comic_list_id` int(0) NOT NULL,
+  `section_id` int(0) NOT NULL,
+  `section_name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `video_url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `comic_list_id`(`comic_list_id`) USING BTREE,
+  CONSTRAINT `comic_list_id` FOREIGN KEY (`comic_list_id`) REFERENCES `comic_list` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of book
+-- Records of comic
 -- ----------------------------
-INSERT INTO `book` VALUES ('1', 'https://i.loli.net/2019/04/10/5cadaa0d0759b.jpg', '且在人间', '余秀华', '2019-2-1', '湖南文艺出版社', '诗人余秀华中篇小说首次结集出版。\r\n\r\n        《且在人间》——以余秀华为生活原型，讲述一个残疾女人悲苦倔强、向死而生的故事。\r\n\r\n        女主人公周玉生活在乡村，患有“脑瘫”，她几乎被所有人漠视，甚至被整个社会抛弃，但是她渴望被当成一个普通的健康人,而不是带着怜悯或不屑，她只要求平等。爱情的缺 失，家庭的不幸，生活的种种际遇让周玉用诗歌的方式把 情感抒发出来，最终她用诗歌创作出了一个文学的世界，得到了人们的认可。', '2');
-INSERT INTO `book` VALUES ('2', 'https://i.loli.net/2019/04/10/5cada7e73d601.jpg', '三体', '刘慈欣', ' 2008-1', '重庆出版社', '文化大革命如火如荼进行的同时。军方探寻外星文明的绝秘计划“红岸工程”取得了突破性进展。但在按下发射键的那一刻，历经劫难的叶文洁没有意识到，她彻底改变了人类的命运。地球文明向宇宙发出的第一声啼鸣，以太阳为中心，以光速向宇宙深处飞驰……\r\n\r\n四光年外，“三体文明”正苦苦挣扎——三颗无规则运行的太阳主导下的百余次毁灭与重生逼迫他们逃离母星。而恰在此时。他们接收到了地球发来的信息。在运用超技术锁死地球人的基础科学之后。三体人庞大的宇宙舰队开始向地球进发……\r\n\r\n人类的末日悄然来临。', '2');
-INSERT INTO `book` VALUES ('32', 'https://i.loli.net/2019/04/10/5cada99bd8ca5.jpg', '叙事的虚构性', '[美] 海登·怀特 ', '2019-3', '南京大学出版社', '海登•怀特被誉为人类伟大的思想家之一。从1973年出版具有里程碑意义的专著《元史学》以来，怀特的作品对于历史学、文学研究、人类学、哲学、艺术史、电影传媒研究等将叙事学作为关注焦点的学科而言意义非凡。\n\n本书由罗伯特•多兰作序，他巧妙地将怀特重要但难得一见的文章汇集成册，研究探讨他关于历史书写和叙事的革命性理论。怀特的这些文章大多采用论文体，内容涉及多位思想家，探讨诸多主题，文笔犀利，语言优美。\n\n《叙事的虚构性》追溯怀特重要思想的演变轨迹，是历史编纂学者和学习者、历史理论和文学研究学者们的重要读物。', '3');
-INSERT INTO `book` VALUES ('35', 'https://i.loli.net/2019/04/10/5cada940e206a.jpg', '圣母', '[日]秋吉理香子 ', '2019-3', '新星出版社', '一起男童被害案搅得蓝出市人心惶惶。\n\n好不容易怀孕生产的保奈美抱紧年幼的孩子，立誓要不惜任何代价保护她。\n\n男人是在孩子出生后才成为父亲的，但女人，是从小生命来到体内的那一瞬间起，就是母亲了。患有不孕症的保奈美是经历过艰辛的治疗过程才终于有了孩子的，她不允许这起命案威胁到宝贵的孩子！\n\n母亲，就是要消除所有对子女的威胁，每一位母亲都应肩负这样的使命，这是神圣的天职！', '1');
-INSERT INTO `book` VALUES ('37', 'https://i.loli.net/2019/04/10/5cada8986e13a.jpg', '奢侈与逸乐', '[英]马克辛·伯格', '2019-3', '中国工人出版社', '本书探讨了十八世纪英国新式、时尚的消费品的发明、制造和购买。', '3');
-INSERT INTO `book` VALUES ('38', 'https://i.loli.net/2019/04/10/5cada8b8a3a17.jpg', '忧伤动物', '[德]莫妮卡·马龙 ', '2019-4', '漓江出版社', '“忧伤动物”(animal triste)这个词组取自一句最早可以追溯到亚里士多德时代的拉丁语名言，即“欢爱后，每个动物都忧伤不已”（Post coitum omne animal triste est）。无疑，这部冠以如此标题的小说让人有不祥的预感并暗示着宿命的思想。小说的女主人公是位近乎百岁的老人。在多年前有意斩断了与外界的一切联系之后，在她的后半生里，她唯一能做的就是或躺或坐在“印着鲜红、艳绿和深紫色的大花”、让人想起“食肉植物的花朵”的床单上，追忆几十年前她和自己...', '1');
-INSERT INTO `book` VALUES ('54', 'https://i.loli.net/2019/04/10/5cada9d9d23a6.jpg', '爱界', '[英] 费伊·韦尔登 ', '2019-3-1', '人民文学出版社', '去不去爱，爱的界限何在，一直是普拉克西丝的人生课题。\n\n年迈的她独自待在肮脏而昏暗的地下室里，想写回忆录，可她该写些什么呢？是写父母未婚同居生下了她，她还年幼天真无邪时，母女就遭父亲抛弃？还是写她曾经或是主动或是被动地成了未婚同居者、妻子、情人、母亲、后母？还是写她两年的牢狱生活？她想描绘二十世纪女性的众生相，想记录女性群体在情感、灵魂和思想方面所处的三重困境，想道出女性之间的大爱如何铸成姐妹之谊。', '3');
-INSERT INTO `book` VALUES ('55', 'https://i.loli.net/2019/04/10/5cada824c7119.jpg', '密室中的旅行', '[美] 保罗·奥斯特 ', '2019-3', '九州出版社', '一旦被抛进这个世界，我们就永远不会消失，即使造物者已经死去。\n\n.\n\n布兰克先生发现自己被囚禁在一个陌生的房间里，对过去的身份和经历一无所知。桌上有四叠六英寸厚的文稿，其中有一份未完待续的囚犯自述；还有一叠似曾相识的照片，照片中的人物将逐一登场。他续写了那个囚犯的故事，却发现自己正在经历的一切也早已被记录在文稿中……', '1');
-INSERT INTO `book` VALUES ('59', 'https://i.loli.net/2019/04/10/5cada87fd5c72.jpg', '基本穿搭', '[日]大山旬 ', '2019-3', '四川人民出版社', '对穿衣搭配感到不耐烦，认为时尚很麻烦，穿什么都可以或者对衣服有着自己的想法但不够自信，本书就是为这样的人而准备的穿衣指南。不需要追随瞬息万变的时尚潮流，也不需要烦恼色彩搭配，只要掌握最低限度的知识和备齐常规单品，谁都能完成清爽得体的 80分搭配。', '4');
-INSERT INTO `book` VALUES ('60', 'https://i.loli.net/2019/04/10/5cada976927da.jpg', '冒牌人生', '陈思安', '2019-4', '四川文艺出版社', '《冒牌人生》收录了十篇短篇小说。十个故事分别以城市中的怪人为主角，他们默默无闻地生存在城市主流生活的边缘地带：或是等待手术的性别认同障碍者，或是武艺高强而深藏不露的夜市摊主，或是卧底追凶的底层保安，或是甘于...', '1');
-INSERT INTO `book` VALUES ('61', 'https://i.loli.net/2019/04/10/5cada9202d970.jpg', '战争哀歌', '[越]保宁 ', '2019-4', '湖南文艺出版社', '《战争哀歌》超越了战争，战争是它的背景，它的内核是关于逝去的青春，关于美和伤痛！\n\n一场突如其来的战争打碎了阿坚和阿芳这对年轻情侣的生活，在血肉横飞的战争中，主人公阿坚成了幸存者，但战争带来的伤痛还远远没有平息。那些经历仍旧萦绕在阿坚的生活之中，被战争毁灭的不仅 仅是阿坚， 阿芳也遭遇了难以想象的梦魇。时间越长，阿坚越觉得自己不是活着，而是被困在这人世间。', '1');
-INSERT INTO `book` VALUES ('62', 'https://i.loli.net/2019/04/10/5cada9c852298.jpg', '胡椒的全球史', '[美] 玛乔丽·谢弗 ', '2019-3', '上海三联出版社', '看似不起眼的胡椒，却是家家餐桌必备。在中世纪时，更是欧洲达官显贵们的最爱、财富与地位的象征。黑胡椒原产于印度，距离欧洲各港口有十万八千里之远，取之向来不易。商人们对其供应来源不遗余力的追寻，成为世界史上一股重要的推动力量，促成全球贸易的兴起，重新划定了世界经济版图。', '2');
-INSERT INTO `book` VALUES ('63', 'https://i.loli.net/2019/04/10/5cada962c287c.jpg', '与病对话', '胡冰霜', '2019-3-31', '北京联合出版公司', '一部融合科普性与趣味性、兼具心理学与哲学意味的医学散文。\n\n一位满怀仁心的资深医者对几十年行医生涯的回望与省思。\n\n全书以真实的病例和鲜活的故事贯穿始终，作者从一位全科医生、心理学者的视角观察、解读疾病与患者身心之关系，厘清大众对诸多常见疾病的误解...', '1');
-INSERT INTO `book` VALUES ('64', 'https://i.loli.net/2019/04/10/5cada858e6019.jpg', '上帝笑了99次', '[英]彼得·凯弗', '2019-2', '北京联合出版公司', '一只美洲羊驼会坠入爱河吗？机器人能变成人吗？怎样才能不赢得公主青睐？人类一思考，上帝就发笑。在99个奇妙、怪诞、滑稽的问题背后，其实是99个烧脑的哲学、道德、法律领域的经典悖论，也是99道极富挑战性的大思考测试。本书内容覆盖了大多数常见哲学话题，包括形而上学、逻辑学、伦理学、语言哲学、政治哲学、自我认知、人际关系、美学、存在主义等，还配有20多幅漫画插图。在锻炼思维之外，本书也能帮我们建立个性化的哲学知识体系。', '3');
-INSERT INTO `book` VALUES ('65', 'https://i.loli.net/2019/04/10/5cada8e1aa892.jpg', '互联网算法', '[美] 菲斯曼等 ', '2019-4', '江西人民出版社', '只要你租过房子、上网买过东西、自己经营过企业，那么你就处在商业变革的前线。在这场变革中，亚马逊、谷歌、优步等不同以往的企业取得了史无前例的成功，而促成这场变革的不只是科技进步，还有经济学思想。\n\n在这本趣味横生的书中，我们会看到，经济思想的革命远比科技革命更宏大。从谷歌广告的算法，到网上购物规避欺诈，都要依靠经济学家建立的经济模型，甚至连互联网公司...', '6');
-INSERT INTO `book` VALUES ('66', 'https://i.loli.net/2019/04/10/5cada9ec514c9.jpg', '七侯笔录', '马伯庸', '2019-4-15', '湖南文艺出版社', '一个关于文化的离奇故事，一段关于文人的壮丽传说。\n\n几千年来，每一位风华绝代的文人墨客辞世之时，都会让自己的灵魂寄寓在一管毛笔之中。他们身躯虽去，才华永存，这些伟大的精神凝为性情不一的笔灵，深藏于世间，只为一句“不教天下才情付诸东流”的誓言。其中最伟大的七位古人，他们所凝聚的七管笔灵，被称为“管城七侯”。\n\n一位不学无术的现代少年，无意中邂逅了李白的青莲笔，命运就此与千年之前的诗仙交织一处，并为他开启了一个叫作笔冢的神秘世界。', '3');
-INSERT INTO `book` VALUES ('67', 'https://i.loli.net/2019/04/10/5cada9870c2ab.jpg', '中心与边缘', '[美] 希尔斯', '2019-3', '译林出版社', '美国著名社会学家爱德华·希尔斯的主要研究成果包括他对“克里斯玛”、“中心”和“边缘”等概念的解释，以及他对“大众社会”一词的修正，这些研究对分析政治和文化领导力以及社会凝聚力具有重要价值。本书对希尔斯数十载社会理论研究进行了全面而详细的总结，为解释与探究当代社会的结构与变化提供了极具科学性的参考依据。', '3');
-INSERT INTO `book` VALUES ('68', 'https://i.loli.net/2019/04/10/5cad643643d4c.jpg', '水浒群星闪耀时', '李黎', '2019-4', '上海文艺出版社', '本书以众所周知的梁山英雄为写作对象，重点书写其上山后、招安前的日常生活，涉及他们的喜怒哀乐、同类中人、乡愁怀旧、未来憧憬、命运追问等。书中涉及宋江、武松、鲁智深、李俊、燕青等等耳熟能详的人物而显得有些“改编”与水浒研究的意味，但鉴于所有人物皆为虚构，本书稿的内容是虚构之上的虚构，旨在宏大叙事的语境下突出个人的细微之处和命运感。', '1');
-INSERT INTO `book` VALUES ('69', 'https://i.loli.net/2019/04/10/5cad63931ce27.jpg', '谋杀狄更斯', '[美] 丹·西蒙斯 ', '2019-4', '上海文艺出版社', '“狄更斯的那场意外灾难发生在1865年6月9日，那列搭载他的成功、平静、理智、手稿与情妇的火车一路飞驰，迎向铁道上的裂隙，突然触目惊心地坠落了。”', '1');
-INSERT INTO `book` VALUES ('70', 'http://localhost:8443/api/file/k09g2r.png', '像艺术家一样思考', '[英] 威尔·贡培兹', '2019-4', '湖南美术出版社', '归纳成就艺术大师的 10 个关键词\n\n揭示大师们的创作秘辛\n\n凝聚 BBC 艺术频道主编威尔·贡培兹职业生涯的所见、所知、所想\n\n·\n\n威尔·贡培兹是你能遇到的最好的老师\n\n——《卫报》', '3');
+INSERT INTO `comic` VALUES (1, 2, 1, '这是一个测试选项', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', '2020-04-20 11:13:18', '2020-04-20 11:13:21');
+INSERT INTO `comic` VALUES (2, 2, 3, '第3项', '', '2020-04-20 11:16:05', '2020-04-20 11:16:08');
+INSERT INTO `comic` VALUES (3, 2, 2, '第2项', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', '2020-04-21 14:05:03', '2020-04-21 14:05:06');
+INSERT INTO `comic` VALUES (4, 2, 4, '第4项', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', '2020-04-21 14:05:03', '2020-04-21 14:05:06');
+INSERT INTO `comic` VALUES (5, 2, 5, '第5项', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', '2020-04-21 14:05:03', '2020-04-21 14:05:06');
+INSERT INTO `comic` VALUES (6, 2, 6, '第6项', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', '2020-04-21 14:05:03', '2020-04-21 14:05:06');
+INSERT INTO `comic` VALUES (7, 2, 7, '第7项', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', '2020-04-21 14:05:03', '2020-04-21 14:05:06');
+INSERT INTO `comic` VALUES (8, 2, 8, '第8项', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', '2020-04-21 14:05:03', '2020-04-21 14:05:06');
+INSERT INTO `comic` VALUES (9, 21, 1, '第01话  风间一派！', 'http://localhost:8443/api/file/comic/21/01.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (10, 21, 2, '第02话  可恶该死的冒牌游戏制作部！！', 'http://localhost:8443/api/file/comic/21/02.mp4', '2020-04-24 14:09:15', '2020-04-24 14:09:18');
+INSERT INTO `comic` VALUES (11, 21, 3, '第03话  府上学院Freedom祭。通称FF祭', 'http://localhost:8443/api/file/comic/21/03.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (12, 21, 4, '第04话  那是魔之十四乐团！！', 'http://localhost:8443/api/file/comic/21/04.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (13, 21, 5, '第05话  啥！？让妹妹做便当！？', 'http://localhost:8443/api/file/comic/21/05.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (14, 21, 6, '第06话  也就是说我们是恋爱三角关系！', 'http://localhost:8443/api/file/comic/21/06.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (15, 21, 7, '第07话  耍阴险——！！', 'http://localhost:8443/api/file/comic/21/07.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (16, 21, 8, '第08话  明明还是点阵图更好…', 'http://localhost:8443/api/file/comic/21/08.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (17, 21, 9, '第09话  没错 她是那小子的妹妹', 'http://localhost:8443/api/file/comic/21/09.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (18, 21, 10, '第10话  多摩学姐 好久不见', 'http://localhost:8443/api/file/comic/21/10.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (19, 21, 11, '第11话  秘技是个啥东东？', 'http://localhost:8443/api/file/comic/21/11.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (20, 21, 12, '第12话  再这样永远都不会有朋友哦', 'http://localhost:8443/api/file/comic/21/12.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
+INSERT INTO `comic` VALUES (21, 21, 13, 'OAD  WATER！！', 'http://localhost:8443/api/file/comic/21/oad.mp4', '2020-04-24 11:19:07', '2020-04-24 11:19:10');
 
 -- ----------------------------
--- Table structure for category
+-- Table structure for comic_list
 -- ----------------------------
-DROP TABLE IF EXISTS `category`;
-CREATE TABLE `category` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `comic_list`;
+CREATE TABLE `comic_list`  (
+  `id` int(0) NOT NULL,
+  `comic_name` char(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `comic_cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `likes` int(0) NOT NULL DEFAULT 1,
+  `info` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of category
+-- Records of comic_list
 -- ----------------------------
-INSERT INTO `category` VALUES ('1', '文学');
-INSERT INTO `category` VALUES ('2', '流行');
-INSERT INTO `category` VALUES ('3', '文化');
-INSERT INTO `category` VALUES ('4', '生活');
-INSERT INTO `category` VALUES ('5', '经管');
-INSERT INTO `category` VALUES ('6', '科技');
+INSERT INTO `comic_list` VALUES (1, '潜行吧~奈亚子', NULL, 1000, '深夜时分，八坂真寻被不知名的“某种物体”紧追在后。由于再怎么求救都没有任何人或声音回应，他只能漫无目标地在市内四处奔逃。在他上气不接下气，觉悟自己大限将至的瞬间——\r\n“总是面带笑容匍匐而来的蠕动混沌，奈亚拉托提普向你问好！”\r\n——一名银发美少女，随着这句莫名其妙至极的标语出现了！\r\n自称奈亚子的奈亚拉托提普表示，她受命前来保护真寻，避免真寻遭受邪恶组织的袭击……就这样，真寻与奈亚子的奇特日常生活揭开序幕！', '2020-04-20 11:10:25', '2020-04-20 11:10:27');
+INSERT INTO `comic_list` VALUES (2, '七日杀', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 80, '这是一个测试番剧功能的例子', '2020-04-20 11:11:56', '2020-04-20 11:11:59');
+INSERT INTO `comic_list` VALUES (3, '碧蓝航线', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 66, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (4, '灵笼', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 15, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (5, '小熊家的龙女仆', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 33, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (6, 'JOJO的奇妙冒险1', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 77, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (7, 'JOJO的奇妙冒险2', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 888, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (8, 'JOJO的奇妙冒险：星辰斗士', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 123, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (9, 'JOJO的奇妙冒险：黄金之风', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 60, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (10, '阿福揍扁了成龙', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 5, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (11, '论乌鸦坐飞机的力学分析', 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', 80, '这是一个测试番剧功能的例子', '2020-04-21 09:58:38', '2020-04-21 09:58:41');
+INSERT INTO `comic_list` VALUES (21, '属性同好会', 'D:/workspace/img/comic_21/7d2d61bb1fd5e1c203474902691a17b1.jpg', 903, '风间坚次是校内赫赫有名的不良少年，一天他偶然踏入“游戏制作社”，遇见了正在社团教室里点火的4名女子社员…\r\n除了摩拳擦掌等着坚次加入这座女孩花园的社员们，连“真正的游戏制作社”都出现了！？\r\n这里是地狱吗…\r\n或是真正的地狱呢（都一样）？', '2020-04-24 10:59:09', '2020-04-24 10:59:12');
+
+-- ----------------------------
+-- Table structure for comment
+-- ----------------------------
+DROP TABLE IF EXISTS `comment`;
+CREATE TABLE `comment`  (
+  `id` int(0) NOT NULL,
+  `user_id` int(0) NOT NULL,
+  `video_id` int(0) NOT NULL,
+  `content` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `create_time` datetime(0) NOT NULL ON UPDATE CURRENT_TIMESTAMP(0),
+  PRIMARY KEY (`id`) USING BTREE,
+  INDEX `video_id`(`video_id`) USING BTREE,
+  INDEX `username`(`user_id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Table structure for history
+-- ----------------------------
+DROP TABLE IF EXISTS `history`;
+CREATE TABLE `history`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `user_id` int(0) NULL DEFAULT NULL,
+  `video_id` int(0) NULL DEFAULT NULL,
+  `history_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Table structure for jotter_article
 -- ----------------------------
 DROP TABLE IF EXISTS `jotter_article`;
-CREATE TABLE `jotter_article` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `article_title` varchar(255) DEFAULT NULL,
-  `article_content_html` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `article_content_md` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci,
-  `article_abstract` varchar(255) DEFAULT NULL,
-  `article_cover` varchar(255) DEFAULT NULL,
-  `article_date` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `jotter_article`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `article_title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `article_content_html` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `article_content_md` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
+  `article_abstract` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `article_cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `article_date` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of jotter_article
 -- ----------------------------
-INSERT INTO `jotter_article` VALUES ('1', '凉风有兴', '凉风有兴，秋月无边，而我思乡的情绪好比度日如年。虽然我风流倜傥玉树临风，但我还是有聪明的头脑和强健的臂腕。', '凉风有兴，秋月无边，而我思乡的情绪好比度日如年。虽然我风流倜傥玉树临风，但我还是有聪明的头脑和强健的臂腕。', '凉风有兴，秋月无边，而我思乡的情绪好比度日如年。', 'https://i.loli.net/2020/01/16/d2ZlKI1WRE4p7XB.png', '2020-01-13 21:14:27');
-INSERT INTO `jotter_article` VALUES ('2', '爱你一万年', '<p>曾经有份真挚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫急，人世间最痛苦的事莫过余此，如果上天在给我一次机会，我会对那个女孩说我爱你，如果要在这份爱上加个期限，我希望是一万年。</p>\n', '曾经有份真挚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫急，人世间最痛苦的事莫过余此，如果上天在给我一次机会，我会对那个女孩说我爱你，如果要在这份爱上加个期限，我希望是一万年。', '曾经有份真挚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫及，人世间最痛苦的事莫过于此。', 'https://i.loli.net/2020/01/16/DdGBk1R3mj5er6v.png', '2020-01-16 00:00:00');
-INSERT INTO `jotter_article` VALUES ('3', '《白卷》项目简介', '<p><img src=\"https://i.loli.net/2019/12/15/sYnuTIrDUwAfGgo.png\" alt=\"wjlogo.png\" /></p>\n<hr />\n<p><img src=\"https://img.shields.io/github/license/Antabot/White-Jotter\" alt=\"lisense\" /><br />\n<img src=\"https://img.shields.io/github/v/release/Antabot/White-Jotter\" alt=\"release\" /></p>\n<p>这是一个简单的前后端分离项目，主要采用 Vue.js + SpringBoot 技术栈开发。</p>\n<p>除了用作入门练习，我还希望该项目可以作为一些常见 Web 项目的脚手架，帮助大家简化搭建网站的流程。之所以叫白卷，是因为它从 0 开始，会随着时间的推移逐渐完善。</p>\n<p>欢迎加入微信圈子 【开发者】 分享、讨论学习经验：</p>\n<p><img src=\"https://i.loli.net/2020/01/17/HySWdM7wDfF8EKC.png\" alt=\"圈子\" /></p>\n<h1><a id=\"_17\"></a>整体效果</h1>\n<h2><a id=\"1_19\"></a>1.首页</h2>\n<p>作为展示页面，包括开发这个项目的主要参考资料、近期更新和 Slogan</p>\n<p><img src=\"https://img-blog.csdnimg.cn/20190403215932913.png\" alt=\"首页\" /></p>\n<h2><a id=\"2_25\"></a>2.图书馆</h2>\n<p>提供图书信息展示功能</p>\n<p><img src=\"https://i.loli.net/2019/12/03/AGLbIupct68ThBD.png\" alt=\"图书馆\" /></p>\n<h2><a id=\"3_31\"></a>3.登录页面</h2>\n<p><img src=\"https://i.loli.net/2019/04/14/5cb2fd5b78ae7.png\" alt=\"登录页面\" /></p>\n<h2><a id=\"4_35\"></a>4.后台管理</h2>\n<p>包含 dashboard、内容管理、用户及权限管理等</p>\n<p><img src=\"https://img-blog.csdnimg.cn/20191202200516251.png\" alt=\"后台\" /></p>\n<h1><a id=\"_41\"></a>技术栈</h1>\n<h2><a id=\"1_43\"></a>1.前端技术栈</h2>\n<p>1.Vue<br />\n2.ElementUI<br />\n3.axios</p>\n<h2><a id=\"2_49\"></a>2.后端技术栈</h2>\n<p>1.Spring Boot<br />\n2.Spring Data + JPA<br />\n3.MySQL<br />\n4.Shiro</p>\n<h1><a id=\"_56\"></a>部署方法</h1>\n<p>1.clone 项目到本地</p>\n<p><code>git clone https://github.com/Antabot/White-Jotter</code></p>\n<p>2.数据库脚本放在 <code>wj</code> 项目的根目录下，在MySQL中执行数据库脚本</p>\n<p>3.数据库配置在 <code>wj</code> 项目的 <code>src\\main\\resources</code> 目录下的<code>application.properties</code> 文件中，mysql 版本为 8.0.15</p>\n<p>4.在IntelliJ IDEA中运行 <code>wj</code> 项目，为了保证项目成功运行，可以右键点击 <code>pom.xml</code> 选择 maven -&gt; reimport ，并重启项目</p>\n<p>至此，服务端就启动成功了，同时，运行 <code>wj-vue</code> 项目，访问 <code>http://localhost:8080</code> ，即可进入登录页面，默认账号是 <code>admin</code>，密码是 <code>123</code></p>\n<p>如果要做二次开发，请继续看第五、六步。</p>\n<p>5.进入到 <code>wj-vue</code> 目录中，在命令行依次输入如下命令：</p>\n<pre><code class=\"lang-\"># 安装依赖\nnpm install\n\n# 在 localhost:8080 启动项目\nnpm run dev\n\n</code></pre>\n<p>由于在 <code>wj-vue</code> 项目中已经配置了端口转发，将数据转发到SpringBoot上，因此项目启动之后，在浏览器中输入 <code>http://localhost:8080</code> 就可以访问我们的前端项目了，所有的请求通过端口转发将数据传到 SpringBoot 中（注意此时不要关闭 SpringBoot 项目）。</p>\n<p>6.最后可以用 <code>WebStorm</code> 等工具打开 <code>wj-vue</code>项目，继续开发，开发完成后，当项目要上线时，依然进入到 <code>wj-vue</code> 目录，然后执行如下命令：</p>\n<pre><code class=\"lang-\">npm run build\n</code></pre>\n<p>该命令执行成功之后， <code>wj-vue</code> 目录下生成一个 <code>dist</code> 文件夹，可以将该文件夹中的两个文件 <code>static</code> 和 <code>index.html</code> 拷贝到 <code>wj</code> 项目中 <code>resources/static/</code> 目录下，然后直接运行 <code>wj</code> 项目，访问 <code>http://localhost:8443</code> ，实际上是把前端打包后作为静态文件，但不推荐使用这种方式。</p>\n<h1><a id=\"_93\"></a>教程</h1>\n<p>我在 CSDN 上分享了开发这个项目的教程，有兴趣的小伙伴可以点击下面的链接查看。</p>\n<p>1.<a href=\"https://blog.csdn.net/Neuf_Soleil/article/details/88925013\" target=\"_blank\">项目简介</a></p>\n<p>2.<a href=\"https://blog.csdn.net/Neuf_Soleil/article/details/88926242\" target=\"_blank\">使用 CLI 搭建 Vue.js 项目</a></p>\n<p>3.<a href=\"https://blog.csdn.net/Neuf_Soleil/article/details/88955387\" target=\"_blank\">前后端结合测试（登录页面开发）</a></p>\n<p>4.<a href=\"https://blog.csdn.net/Neuf_Soleil/article/details/89294300\" target=\"_blank\">数据库的引入</a></p>\n<p>5.<a href=\"https://blog.csdn.net/Neuf_Soleil/article/details/89298717\" target=\"_blank\">使用 Element 辅助前端开发</a></p>\n<p>6.<a href=\"https://learner.blog.csdn.net/article/details/89422585\" target=\"_blank\">前端路由与登录拦截器</a></p>\n<p>7.<a href=\"https://learner.blog.csdn.net/article/details/89853305\" target=\"_blank\">导航栏与图书页面设计</a></p>\n<p>8.<a href=\"https://learner.blog.csdn.net/article/details/92413933\" target=\"_blank\">数据库设计与增删改查</a></p>\n<p>9.<a href=\"https://learner.blog.csdn.net/article/details/95310666\" target=\"_blank\">核心功能的前端实现</a></p>\n<p>10.<a href=\"https://learner.blog.csdn.net/article/details/97619312\" target=\"_blank\">图片上传与项目的打包部署</a></p>\n<p>11.<a href=\"https://learner.blog.csdn.net/article/details/100849732\" target=\"_blank\">用户角色权限管理模块设计</a></p>\n<p>12.<a href=\"https://learner.blog.csdn.net/article/details/101121899\" target=\"_blank\">访问控制及其实现思路</a></p>\n<p>13.<a href=\"https://learner.blog.csdn.net/article/details/102690035\" target=\"_blank\">使用 Shiro 实现用户信息加密与登录认证</a></p>\n<p>14.<a href=\"https://learner.blog.csdn.net/article/details/102788866\" target=\"_blank\">用户认证方案与完善的访问拦截</a></p>\n<p>15.<a href=\"https://learner.blog.csdn.net/article/details/103114893\" target=\"_blank\">动态加载后台菜单</a></p>\n<p>16.<a href=\"https://learner.blog.csdn.net/article/details/103250775\" target=\"_blank\">功能级访问控制的实现</a></p>\n<p>(持续更新中)</p>\n<h1><a id=\"_131\"></a>近期更新</h1>\n<p>12-01 实现功能级权限控制<br />\n11-30 利用 vue-elment-admin 项目完善后台界面设计<br />\n11-17 重构项目，完成搭建后台基础界面，实现按角色加载菜单，取消前台访问限制<br />\n04-27 使用前端拦截器，数据库迁移至 mysql 8.0.15，后台管理页面初始化<br />\n04-13 完成图片的上传功能<br />\n04-11 完成图书分类功能<br />\n04-08 完成图书分页功能<br />\n04-06 完成图书查询功能<br />\n04-05 完成图书修改功能<br />\n04-04 完成图书删除功能<br />\n04-03 完成图书新增功能</p>\n', '![wjlogo.png](https://i.loli.net/2019/12/15/sYnuTIrDUwAfGgo.png)\n\n---\n\n![lisense](https://img.shields.io/github/license/Antabot/White-Jotter)\n![release](https://img.shields.io/github/v/release/Antabot/White-Jotter)\n\n\n这是一个简单的前后端分离项目，主要采用 Vue.js + SpringBoot 技术栈开发。\n\n除了用作入门练习，我还希望该项目可以作为一些常见 Web 项目的脚手架，帮助大家简化搭建网站的流程。之所以叫白卷，是因为它从 0 开始，会随着时间的推移逐渐完善。\n\n欢迎加入微信圈子 【开发者】 分享、讨论学习经验：\n\n![圈子](https://i.loli.net/2020/01/17/HySWdM7wDfF8EKC.png)\n\n\n# 整体效果\n\n## 1.首页\n\n作为展示页面，包括开发这个项目的主要参考资料、近期更新和 Slogan\n\n![首页](https://img-blog.csdnimg.cn/20190403215932913.png)\n\n## 2.图书馆\n\n提供图书信息展示功能\n\n![图书馆](https://i.loli.net/2019/12/03/AGLbIupct68ThBD.png)\n\n## 3.登录页面\n\n![登录页面](https://i.loli.net/2019/04/14/5cb2fd5b78ae7.png)\n\n## 4.后台管理\n\n包含 dashboard、内容管理、用户及权限管理等\n\n![后台](https://img-blog.csdnimg.cn/20191202200516251.png)\n\n# 技术栈\n\n## 1.前端技术栈\n\n1.Vue  \n2.ElementUI  \n3.axios   \n\n## 2.后端技术栈\n\n1.Spring Boot  \n2.Spring Data + JPA \n3.MySQL  \n4.Shiro\n\n# 部署方法\n\n1.clone 项目到本地\n\n`git clone https://github.com/Antabot/White-Jotter`\n\n2.数据库脚本放在 `wj` 项目的根目录下，在MySQL中执行数据库脚本  \n\n3.数据库配置在 `wj` 项目的 `src\\main\\resources` 目录下的`application.properties` 文件中，mysql 版本为 8.0.15   \n\n4.在IntelliJ IDEA中运行 `wj` 项目，为了保证项目成功运行，可以右键点击 `pom.xml` 选择 maven -> reimport ，并重启项目\n\n至此，服务端就启动成功了，同时，运行 `wj-vue` 项目，访问 `http://localhost:8080` ，即可进入登录页面，默认账号是 `admin`，密码是 `123`\n\n如果要做二次开发，请继续看第五、六步。\n\n5.进入到 `wj-vue` 目录中，在命令行依次输入如下命令：  \n\n```\n# 安装依赖\nnpm install\n\n# 在 localhost:8080 启动项目\nnpm run dev\n\n```  \n\n由于在 `wj-vue` 项目中已经配置了端口转发，将数据转发到SpringBoot上，因此项目启动之后，在浏览器中输入 `http://localhost:8080` 就可以访问我们的前端项目了，所有的请求通过端口转发将数据传到 SpringBoot 中（注意此时不要关闭 SpringBoot 项目）。\n\n6.最后可以用 `WebStorm` 等工具打开 `wj-vue`项目，继续开发，开发完成后，当项目要上线时，依然进入到 `wj-vue` 目录，然后执行如下命令：  \n\n```\nnpm run build\n```  \n\n该命令执行成功之后， `wj-vue` 目录下生成一个 `dist` 文件夹，可以将该文件夹中的两个文件 `static` 和 `index.html` 拷贝到 `wj` 项目中 `resources/static/` 目录下，然后直接运行 `wj` 项目，访问 `http://localhost:8443` ，实际上是把前端打包后作为静态文件，但不推荐使用这种方式。\n\n# 教程\n\n我在 CSDN 上分享了开发这个项目的教程，有兴趣的小伙伴可以点击下面的链接查看。  \n\n1.[项目简介](https://blog.csdn.net/Neuf_Soleil/article/details/88925013)\n\n2.[使用 CLI 搭建 Vue.js 项目](https://blog.csdn.net/Neuf_Soleil/article/details/88926242)\n\n3.[前后端结合测试（登录页面开发）](https://blog.csdn.net/Neuf_Soleil/article/details/88955387)\n\n4.[数据库的引入](https://blog.csdn.net/Neuf_Soleil/article/details/89294300)\n\n5.[使用 Element 辅助前端开发](https://blog.csdn.net/Neuf_Soleil/article/details/89298717)\n\n6.[前端路由与登录拦截器](https://learner.blog.csdn.net/article/details/89422585)\n\n7.[导航栏与图书页面设计](https://learner.blog.csdn.net/article/details/89853305)\n\n8.[数据库设计与增删改查](https://learner.blog.csdn.net/article/details/92413933)\n\n9.[核心功能的前端实现](https://learner.blog.csdn.net/article/details/95310666)\n\n10.[图片上传与项目的打包部署](https://learner.blog.csdn.net/article/details/97619312)\n\n11.[用户角色权限管理模块设计](https://learner.blog.csdn.net/article/details/100849732)\n\n12.[访问控制及其实现思路](https://learner.blog.csdn.net/article/details/101121899)\n\n13.[使用 Shiro 实现用户信息加密与登录认证](https://learner.blog.csdn.net/article/details/102690035)\n\n14.[用户认证方案与完善的访问拦截](https://learner.blog.csdn.net/article/details/102788866)\n\n15.[动态加载后台菜单](https://learner.blog.csdn.net/article/details/103114893)\n\n16.[功能级访问控制的实现](https://learner.blog.csdn.net/article/details/103250775)\n\n(持续更新中)\n\n# 近期更新\n \n12-01 实现功能级权限控制  \n11-30 利用 vue-elment-admin 项目完善后台界面设计  \n11-17 重构项目，完成搭建后台基础界面，实现按角色加载菜单，取消前台访问限制  \n04-27 使用前端拦截器，数据库迁移至 mysql 8.0.15，后台管理页面初始化  \n04-13 完成图片的上传功能  \n04-11 完成图书分类功能  \n04-08 完成图书分页功能  \n04-06 完成图书查询功能  \n04-05 完成图书修改功能  \n04-04 完成图书删除功能  \n04-03 完成图书新增功能\n', '白卷是一个简单的前后端分离项目，主要采用 Vue.js + SpringBoot 技术栈开发。', 'https://i.loli.net/2020/01/19/egDEfu5jXlJ6r3a.png', '2020-01-19 00:00:00');
+INSERT INTO `jotter_article` VALUES (1, '凉风有兴', '凉风有兴，秋月无边，而我思乡的情绪好比度日如年。虽然我风流倜傥玉树临风，但我还是有聪明的头脑和强健的臂腕。', '凉风有兴，秋月无边，而我思乡的情绪好比度日如年。虽然我风流倜傥玉树临风，但我还是有聪明的头脑和强健的臂腕。', '凉风有兴，秋月无边，而我思乡的情绪好比度日如年。', 'https://i.loli.net/2020/01/16/d2ZlKI1WRE4p7XB.png', '2020-01-13 21:14:27');
+INSERT INTO `jotter_article` VALUES (2, '爱你一万年', '<p>曾经有份真挚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫急，人世间最痛苦的事莫过余此，如果上天在给我一次机会，我会对那个女孩说我爱你，如果要在这份爱上加个期限，我希望是一万年。</p>\n', '曾经有份真挚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫急，人世间最痛苦的事莫过余此，如果上天在给我一次机会，我会对那个女孩说我爱你，如果要在这份爱上加个期限，我希望是一万年。', '曾经有份真挚的爱情摆在我的面前，我没有珍惜，等到失去的时候才后悔莫及，人世间最痛苦的事莫过于此。', 'https://i.loli.net/2020/01/16/DdGBk1R3mj5er6v.png', '2020-01-16 00:00:00');
+INSERT INTO `jotter_article` VALUES (3, 'ACG名词解释', '御宅族：（日文:おたく、音 otaku）一般以动画、漫画、游戏、轻小说的狂热爱好者为主要的称呼对象。对于了解“御宅族”涵义的人，通常将作形容词的“宅”视作“御宅”的简化，常使用“宅男”、“宅女”、“阿宅”或单独一个“宅”字及其衍生出的词汇来指代御宅文化相关事物。\r\n二次元：在传统上，以平面的媒体所表现的虚拟角色，如漫画或动画中的人物，因其二维空间的本质，而常被称为“二次元角色”，以有别于现实（三维空间）的人物。\r\n2.5次元：介于动漫世界和现实世界的存在。像上面提到的周边世界，存在于动漫和现实之间的产物，所存在的圈子，被称为2.5次元，不过在分类日渐清晰化。目前，2.5次元多用于代指由动漫、游戏原作改编的舞台剧或音乐剧。\r\n三次元：在动漫迷眼中现实世界就是三次元。\r\n腐女：\r\n腐女源自于日语，是由同音的“腐女子（ふじょし）”转化而来，为喜爱BL的女性自嘲的用语。腐女的“腐”在日文有无可救药的意思，而腐女是专门指称对于男男爱情——BL系作品情有独钟的女性，通常是喜欢此类作品的女性之间彼此自嘲的讲法。\r\n吐槽：“吐槽”一词是指从对方的语言或行为中找到一个漏洞或关键词作为切入点，发出带有调侃意味的感慨或疑问，而打着吐槽旗号的八卦、抱怨、吐苦水、说三道四都不属于吐槽。此词来源于日本漫才（类似于中国的相声）里的“突っ込み” ，普通话里相当于相声的“捧哏”，闽南语中有“吐槽”一词，所以台湾的翻译都翻成“吐槽”，然后大陆也开始用了。最接近的词是“抬扛”、“掀老底”、“拆台”。例如：志村新八（《银魂》）、泽田纲吉、弗兰（《家庭教师hitman Reborn》）。\r\n萌：【形容词、副词】；在日本动漫中，此字代表刚刚从脑海里一闪而过的不夹带其余杂质美好的感情喜爱，欣赏，使人感到愉快等。有被电到的感觉，代表喜欢，激动人心，激发荷尔蒙，可爱等等的含义，指看到令人觉得的极度可爱之人、事、物的形容词。\r\n御姐：一个\r\n御姐和萝莉相对的词，单纯来说是指相对年纪比较大但又不会是“熟女”程度的女生，一般定义是成年以上（日本成年二十岁），发育良好，性格比较压人/偏强势；有一点可以肯定，就是御姐一定不是被你叫做“姐姐”的那种普通而温柔的人……这方面的范围定义方法接近于萝莉，而区别于御妹。\r\n女王：即指那些很有气势，能够独当一面，成熟强势，有一定的能力凌驾于所有人之上的人，常使唤人的人物属性，可以适当降低年龄要求，一般是在十六岁以上（日本女性十六可结婚由此演变）。也可以用来称呼比较强势的男性受。这类人物的女性一般不会撒娇耍赖，而是坚强而勇敢，拥有领袖的风范，但坚强勇敢的女性却不一定是女王。一般的女王都是御姐，但御姐并不是女王。\r\n正太：【名词、形容词】；和萝莉属相反性别同义词，也就是指生理年龄约为3～15岁左右之未成年男孩，同样因各人见解之不同，现只指作外貌像小孩的男孩，其明确之定义为“依据个人观点而认知的小弟弟”；例句：“看，那边有一个好可爱的正太唷！”。例子人物：夏尔【黑执事】镜音连（镜音Len）。\r\n萝莉（Loli）：【名词、形容词】；与“幼女”不同，其生理年龄约为 8~14岁之间的少女，后因网络传播导致含义出现偏差，现只指作外貌像小孩的女孩，其明确之定义为“依据个人观点而认知的小妹妹”；例句：“好可爱的萝莉呀！”“这真是太萝莉啦！”。例子人物真城璃茉（守护甜心），菲特(魔法少女奈叶)。\r\n乙女：乙女该词来自日本。乙女（おとめ）。有三个意思：1，年轻女子、姑娘、少女 2，处女、未婚女子 3，日本古代和着宫中舞乐起舞的舞女。乙女被用来表示是介于萝莉和御姐之间的女孩子。\r\n中二病：（又称\r\n中二病初二症）指一种自我认知心态。“中二”是日语对“初中二年级”的称呼，中二病从字面上来理解就是：初二年级青少年的某些病态自我意识。其实它不限于初二年级，也未必算正规意义上的病，这只是一种谑称。有不同的表现：有的陷入对生死、宇宙、自己、他人和身边的事物的存在的片面苦思之中，有的对政治、社会的肮脏进行想当然的批判，还有装不良的，或许有过伟大的计划想改变身边的事物，结果什么行动都没有，最终就这样收敛了。这种性质也算是中二病的病状。区别于高二病。\r\n萝太：即为伪娘的初级阶段。此为OTAKU新创造的合成词：萝莉（loli） +正太（shota）=LOTAI。萝太通常是指年纪小、没有胡子、长相漂亮、行为举止好似女孩子的可爱小男生。\r\n天然呆：多为御宅族使用，用以喻指那些看起来傻乎乎有点反应迟钝的纯情可爱萝莉或正太，或者他们所具备的性格特征。作为一种性格而言，其是相对外显的性格。如：古河早苗，古河渚，冈崎汐（均出自《CLANNAD》）。\r\n无口无口：日语假名作むくち，罗马音读作mukuchi，本义为沉默寡言、不爱说话，在现实中是一个形容动词，例如：无口な慰めをくれたから（但有你几句安慰的话）。而在ACG界则是一种萌特性。绝大部份可被称得上无口的人物，都是女生。无口作为萌的属性，并非只是单单的不作声，而是一种复杂的行为及性格复合特征，然而，「没有需要，便不会说话。没有需要，便不作表情」就是无口的外在表现的集中体现。有很多的时候，无口而萌的引发点会是在无口特性骤减的一刻，即是「无口不无口」的瞬间。在一套作品内，多数不会出现多过一个无口属性的人物。这里需说明的是汉语中并无无口这个词语，因而不可以按照汉语词法将其理解作没有嘴，不说话之类的意思。\r\n人妻：指男人的妻子，多用于次文化（如ACG），也是萌属性的一种。一般兼具大和抚子属性。由于已婚女性在婚后，多半在异性相处上没有婚前的娇羞，或一定的矜持（特别是同是萌属性之一的扭扭捏捏），因此在社交活动圈中拥有一种特殊的成熟感；这种成熟感往往是吸引一些特定未婚异性的关键。有一些人妻表现的人物具有大和抚子的属性，她们相夫教子，一手包办家务，对外则能做到非常合乎礼节的表现，也是另一种吸引特定未婚异性的特质之一。在一些拥有特殊表现的作品中，她们不但居于主动，而且常有出乎意料大胆的行径，一般可认为是在描述婚后的女性被激发的另一面。现用于同性恋人中某一方温柔体贴、善解人意。\r\n傲娇：傲娇（ツンデレ，亦常翻译为外冷内热、蛮横娇羞、恶娇、娇蛮、不坦率）是指“平常说话带刺态度强硬高傲，但在一定的条件下害臊地黏腻在身边”的人物，主要是常用于恋爱型态的词汇。本来是发源于日本的美少女游戏业界，而在包含动画、漫画的御宅族次文化里广泛形成萌的对象之一种类型，另一方面在、大众媒体上也会被使用到，作为譬喻有魅力的人物形象、恋爱模范、话题人物等。依照个人不同而定义的差异甚大，也可说是个相当抽象的概念。\r\n病娇：它包含了两个不同的类别：一种是原本正常但是精神无法承受情感的重负而丧失理智的人；另一种人则是本身就不具备正常思维方式的人，因为陷入爱情而变得更加不正常，一种是随着时间而变化，一种则是因果关系，先天上并不是女主角的天性一开始就是病娇，大多是因为男主角方面懦弱、傲娇、鬼畜、恶劣的个性所导致这样的结果。在这样的意义下病娇的交往对象和懦弱的个性密不可分。《未来日记》女主我妻由乃是典型病娇代表。\r\n腹黑腹黑：看字面意思的话，就是“肚子里都是黑的”。这是一句日文，原意为“心地坏的”、“黑心的”、“黑心肝”、“表里不一”的意思，并常常将此一面进行演技化的伪装掩盖，使人看起来总是笑意充沛，温和无害，亲切有加，但却是在几秒内的打量里就能精确地计划出能以怎样的步骤让你自愿掉进三米外的粪池。再直白点解释，外表善良，温柔，内心恶毒，邪恶，把自己的快乐建立在别人的痛苦之上，不折磨死人誓不罢休。所以，你最好不要招惹这种人，否则你连自己是怎么死的都不知道。例子人物：塞巴斯蒂安（黑执事）夜神月（死亡笔记）不二周助（网球王子）、凤镜夜（樱兰高校男公关部）、折原临也（无头骑士异闻录）、鲁路修（反叛的鲁路修）、梦梦·贝莉雅·戴比路克（出包王女）。\r\n毒舌：多为御宅族所使用（在此意义下），用以喻指那些言谈流利明确，用词恶毒阴辣，能使语言的被施加者产生诸如头皮发麻、恶心不适和抑郁不快、低沉失落等生理反应和心理反应的动漫人物及其说话方式与处事态度。\r\n猫耳娘：拥有猫耳、尾巴、肉球等猫特征的女孩。可能是Cosplay的人类女孩，或是兽人、外星人，在奇幻或科幻的次文化族群经常出现。又称猫耳、猫女。猫耳萌属性的女孩，是日本动漫游戏界的一条重大分支。猫耳是萌元素的一种，有很萌的魅力，一般为萝莉系，是COSPLAY的大爱。必备萌要素猫耳猫尾，最好有铃铛，可以直接攻陷人心。在漫画里一般是魔法系，有变身之类的技能。\r\n兔耳娘：头上长着兔耳朵的萌属性。\r\n女仆：\r\n女仆在日本女佣被当作萌的对象之一，通常是妙龄女子穿着女佣围裙即所谓的女佣服（メイド服）。在ACG作品或cosplay的取材上有许多使用。就连在作品中主角侧旁安置没血缘关系的女性角色这种手法的场合也会被使用，称呼雇主的时候大致是主人（御主人様（ごしゅじんさま））或xx大人（xx様， xx为被称呼的对象名字）。\r\nSM：性虐恋（英文sadomasochism）的简称，通常s是施虐方，m是受虐方，s也被叫做主人，m是奴，sm是一种将性快感与痛感联系在一起的特殊性活动，即通过痛感获得性快感的性活动，是一种性欲倒错，属于bdsm重要术语之一。其中的疼痛既包括肉体痛苦（如鞭打导致的痛感），又包括精神上的痛苦（如羞辱、支配所导致的痛苦感觉），虐恋还包含施虐癖和受虐癖两个范畴，对他人施加痛苦可以导致自身的性快感、性兴奋或单纯的乐趣则属于前者，如果接受痛苦可以导致自身的满足感则属于后者。\r\n鬼畜：1.（日语直译）鬼畜一般指有心理变态性虐倾向的流氓或淫棍，恶趣味指有鬼畜趋向的不好的趣味，也指其它。（其实，最主要就是性虐）源自日语，原意指像魔鬼畜牲一样残酷无情。一般指五种不道德的性取向，且有严重虐待倾向。2.在国内宅圈通常指一种恶搞视频类型，将搞笑的声音片段、台词或表情替换原有的一段歌曲旋律和画面，或是将其组合成新的旋律，配合画面的重复形成节奏感的视频。名词起源于一个叫“最终鬼畜蓝蓝路”的视频，也因其画面像鬼一样的抽搐。在日本宅圈称之为“音mad”。\r\n幼驯染：在日文中的“幼驯染”指的是从小玩在一起的朋友，因在日本动画、漫画甚至文学作品中幼驯染相恋的故事极受欢迎，所以通常翻作青梅竹马。\r\n洛丽塔（Lolita）：【名词】；A seductive adolescent girl. 一个魅力没法挡的未成年少女，也就是萝莉的来源。也是日本流行的一种服饰，又称lolita fashion，喜欢这种服饰的女孩被称为lo娘。如今这种流行服饰已经传播到了我国，以及世界各地。\r\n兄贵：【名词、形容词】；指全身筋肉爆满，拥有强硬华美肌肉喜欢“摔跤”，还必须具备主观上对同性菊花有兴趣或者一定程度上的基情才能称之为兄贵。\r\n姐贵：【名词、形容词】；意指成熟妩媚的大姐姐，其意类似于“熟女”，通“女市贵”。\r\n脑残：【名词，形容词】； 简说：NC 1.指不用脑袋思考便可以完成的事情，2.火星人的想法、做法，3.非正常、非主流（诸如常人看来很傻的话题，某几人却很乐意讨论这个），4.傻了\r\n小白：【名词、形容词】；指网络上不守礼节、不守秩序、不会自我规范的人，为“小白痴”的简称，有时也指智商太低或理解力太低的人。同义于日文的“厨房”。一般自称小白的人，是指自己对于某方面知识不足，是新手。有时也是小白鼠的简称。\r\nLGBT：女同性恋、男同性恋、双性恋、跨性别。\r\n伪娘：【名词】；\r\n伪娘形容词和动词就是“伪”。通常指的是有女性美貌的正常男性角色，且变装(男扮女装)后常常带有很强的萌属性，有的可能更胜过一般女性角色。伪娘是因为动漫作品中出现了从相貌上被认定为女的动漫角色，其实是男性角色而发出感慨，而出现的一个新名词。伪娘，说白了，就是相貌形态天然的呈女性化美的男人。伪娘也不是硬套个女装就可以的，还要化妆以及掩盖掉男的特征（例如：关节，肩宽，脸型），伪娘是同时具有女性和男性魅力的，一般伪娘漂亮的是靠硬件的，但是有些硬件不行的可以用脂肪来掩盖掉一些再加上化妆也都可以的，所以有些伪娘不是非常瘦的，有本书是专门教女装（逆性别）Cos的教程，叫《好想做个女孩子！》，还有，日本有个节目，叫“学校封神榜”，有个企划是“女装天堂”，全是女装子其中有不少伪娘，截至2013年有许多伪娘的动画，有兴趣的话可以去看哟~ 例子：藤咲凪彦（守护甜心）。\r\nKUSO：【名词、动词、形容词、副词、感叹词、助词】；日文“可恶”的读音。名词做为粪解释；动词则解为恶搞；形容词及副词解释为事物或动作很恶搞、很爆笑；也可用来大声念出此字以纾发自己的情感，是为感叹词之解释，其带有“恶搞”或“妈的”之意；此外KUSO也可以用做句首或句末助词。KUSO在台湾也有这意思，有比较广的用途。\r\nCG：【名词】在动画界中是将计算机动画或者图片作为宣传手段或者展示手段，在游戏中则是游戏的附带质量比较高图片\r\n口癖：【名词】；指在习惯性的在每一句话的最后加上去的句末助词，例：“喵~”、“的说~”、“捏~”、“嘎~”等\r\n黑化：\r\n黑化【名词、动词、形容词】；“黑化”语出18禁游戏“fate stay night（命运长夜）”，指间桐樱线的saber被圣杯污染黑化，后引申为“性情大变”。又指平时很好人的人受到某种刺激后行为变得疯狂（通常都带有嗜血倾向）。大体接近崩坏，但程度要轻的多，指精神上的坏掉... 眼睛没有了焦点...就变成了一团黑了....一般是大受刺激之后的状态。也写作“病んデレ”（病娇），“病ん”病态的意思，“デレ”娇羞可爱的意思，不过出处通常一至认为是来自于2005年的18禁游戏“school days”。结果大受欢迎，同时间的舞-hime、shuffle都有类似的情形出现这词典才开始渐渐流行起来。\r\n残念：【形容词、副词、感叹词】；可惜的，来源于日文中“遗憾”的日汉字写法；例句：“今天没有买到妹妹公主的音乐盒，真是残念啊。”。\r\n怨念：【名词、形容词】；某人对某件事感到怨恨而形成的一股强大的灵念，或用来表示对某件事物的狂热；例句：“昨日通关后没电无法存档！怨念呀……”\r\nXD：(1)西式颜文字的一种，横着看起来像是一个猥琐而不怀好意的笑容,其意思已经被大多数BBS所接受.人们常在留言的最后加上XD,表示了自己用一种很邪恶的眼看着方。\r\n不过，更多的人愿意接受认为是一种开怀的大笑，X表示眼睛笑成叉形，D表示张大的嘴。(2)XD作为网络用语，也可以解释为：兄弟。例如：XD们，给介绍几款好玩的游戏。(3)象形文字，形容不好意思。(4)XD还有“叉的”的意思（如 女马的,女良的），意在不说脏话而表示愤怒。(5)XD还有“小弟”的意思，在论坛发帖交流中需求得求知信息时，【如：各位大虾方便的话，说下怎么去那里啊，XD（小弟）在这里就多谢啦！】形容卑称自己，寻求别人帮助，表示对帮助者的敬意。\r\nCP：Character Coupling（人物配对）的缩写，主要用在同人作品中。\r\n控：【名词、动词】；即日文发音中的\"con\"，源于英文中的complex ，在心理学上指情结，如恋母情结等。控指极度喜欢某东西之人或极度喜欢某东西，作名词时喜欢的东西冠在“控”字之前，例：萝莉控。动词时“控”字置前，例：控大叔。\r\n眼镜娘：\r\n眼镜娘同萝莉等乃同一类词，顾名思义就是喜欢戴眼镜的女生，引申条件为女生必须头发长长、个性温柔。\r\nBL：全名Boy\'s Love，指男与男之间的爱慕，亦可代表为男同性恋（动漫中专用）。\r\n耽美：1.美型的BL。2.用于形容女性向的游戏中的男性角色。缩写为DM\r\nGL：全名Girl\'s Love(俗称: 百合)，指女与女之间的爱慕，亦可代表为女同性恋（动漫中专用）。\r\n健全：【形容词】；形容作品本身非常积极向上，老少咸宜，适合任何年龄段人鉴赏；没有不健康的因素在内。\r\n搞基：指男性同性恋趋向者。是指某一种喜欢男人的男性，此类人称为“搞基”。“基”的粤语读音和“Gay”的读音相同。 “搞基”是男性与男性之间的性关系群，在当代社会中此种现象非常常见。该词也由贬义词成为中性词。基佬，基情。更甚至有“少年，来一发”之说，各种内涵不言而喻。\r\n死库水（スク水）：日本的初中至高中的校园泳装，绅士间术语通常简称作“スク水”（スクール水着 中文常音译为“史库水”、“死库水”）。在一些国家的学校里，学生上游泳课时，一般都穿着学校的制式泳装，这类泳装即为校园泳装。为了方便水中活动，校园泳装一般都采取紧身、连身设计，属于保守的低叉泳装。\r\n三无动漫：“やま(山)なし、おち(落ち)なし、いみ(意味)なし”的缩写，就是“无截止、无目标、无意义”的意思。此类漫画的特点是描写男性同性恋，一般是用热门故事里的角色。又称作“少年爱/Boys\'。\r\n三无少女：ACG界用语且多为御宅族所使用，用以喻指那些沉默寡言、缺乏面部表情、难以被窥知心理的内心封闭的少女。三无源于日语，即无口、无心、无表情。无口指少言寡语，即使说话也就是最简单精练的回答；无表情指没有表情，看不到悲伤也看不到喜悦，看不出内在的心理情绪，有些冰冷且不为外界所动的感觉；无心指无法了解其内心的感情色彩，并非说“三无少女”是没有心灵的。三无少女，ACG用语，萌少女的一种。基本标准为无口无心无表情，即面部缺少表情，只进行必要对话，无法感觉到她的内心变化。但因为实际上却会随着故事进行在不同情况表现出不三无的一面，因此又可分为多个种类。名词，“三无”则作为形容词。如angel beats中的立华奏\r\n绝对领域绝对领域：在过膝袜子和短裙之间那一段可以看到大腿的若隐若现的空间。那段裙子与长袜之间若隐若现的美丽肌肤让无数男生感到充满诱惑，能够让他们从中看到[美丽的梦想]，所以被称为神圣不可侵犯的[绝对领域]。出处则为电脑桌面模拟人格系统软件伪春菜（<noinclude>）中的角色<noinclude>。至於最初何时出现「绝对领域」这个名词至今已无从稽考，但该模拟人格角色的作者在其日记、讨论区及同人志经常使用「绝对领域」一词，再加上自21世纪以来，出现绝对领域的动画角色有所增加（主要原因是由电脑游戏改编动画增加），至使该词在同人及御宅族间流传。直到2005年年底，日本一个电视节目「电视冠军」中一名参加者将此词公诸于世，令本词开始被日本主流社会使用。「绝对领域」一词用于描写动画、漫画及电脑游戏中的二次元女性和秀吉角色作为萌的一种特征。\r\n种草莓：草莓者，吻痕是也。而种草莓的意思也就是把这个印记留在某人身上的意思。 一般情侣或夫妻的身上可以见到（较多流行于八零以后的年轻情侣、夫妻之间）。因用力过猛而留下吻痕。此“痕迹”并不是不会消失的！一般在2~3天便逐渐变淡，继而7天内消失无痕。\r\n达令：达令就是darling，英文意为亲爱的。\r\n修罗场：动漫中的是喜欢同一个人的复数的人（多指女性）在被喜欢的人面前相遇时候相互的表现自己、排挤她人、互相竞争的场景，三角恋或多角恋的情况下喜闻乐见的场景。比如表面上2个女生互相客套吹捧，实际上口蜜腹剑笑里藏刀暗藏汹涌。\r\n后宫动漫：因为除了男主角外的男性都是没有竞争力或不介入的配角，男主角就如处于后宫，故得名。一般情况下，一大堆的女主角围绕着同一个男主角发生错综复杂的爱情，而男主角往往到了结尾依然无法作出选择。这就是一个很明显的后宫了。而当性别转换一下，一堆男主角围绕着一个女主角进行故事的情况下，这个便是“逆后宫”了。而虽然身边美女/美男众多，但是男主角/女主角自始至终只是对其中一个女主角/男主角一心一意的情况下，便称之为“伪后宫”。百合控的女主角被数位甚至数十位美女或美少女包围的作品也被称后宫。\r\n表番：如果从原意出发，由于工口动画是不会在电视上播放，所以不存在表里之说。甚至连“番”这个字都不沾边。能够被称为“番组”的，只有在公共媒体中播放的节目。里番的定义适用于一切电视、广播级网络节目，包括但不限于动画节目。\r\ncosplay：比较狭义的解释是模仿、装扮虚拟世界的角色，也被称为角色扮演。由此，在网络上衍生出了新的含义，往往被用来形容“假扮某类人的人”。\r\n大和抚子（やまとなでしこ）：\r\n大和抚子被用作性格文静，温柔稳重并且具有高尚美德的女性的代称，也一度被日本政府作为宣扬父权社会意识形态遵三从四德、相夫教子的传统日本女性的符号一般的存在，少数时候也被用来广义地代指日本女性。这个代称在现代一般地被ACG爱好者使用，因此也是萌属性的一种。\r\n闪光：那些不停地炫耀自己多有钱多好运多受美女欢迎的人，群众纷纷表示眼睛被闪瞎了。\r\n脑补：即脑内补完。动漫方面的用语。通常是指在头脑中对某些情节进行脑内补充，对漫画中、小说中以及现实中自己希望而没有发生的情节在脑内幻想。\r\n赛高：【形容词、副词】；日语「最高」さいこう的音译，最棒、最好之意。\r\n败家：【动词、形容词】；指花钱买很多的精品（好物）的动作，另解为一次花费很多钱去买东西或解为购物。\r\n苦手：【形容词】；对某件事感到困扰、棘手。\r\n轰杀：【动词】；此为港漫用语，用来指要杀掉某人的动作。\r\n废柴（废材）：【名词】；此为港漫用语，指无用之人，或者是废物，通“废柴”、“脓包”，什么都做不好的人。通常将MADAO用作形容废柴或自嘲（出自《银魂》中长谷川泰三）。比如沢田纲吉（日常态）。例句：“我就是一个废柴，什么都做不好……”\r\n破天：【动词】；此为港漫用语，就是“打破天”，不爽时可使用此词。\r\n逆天：【动词、助词、感叹词、形容词】；此为港漫用语（起源于中国大陆网文），指要逆着天道而行，或愤怒时所使用之句首助词。有时也可用于形容词，形容某主角能力太过强大，到了违背天理的程度。例句：“这主角的能力太逆天了，看着没嘛劲。”\r\n热血：【名词、形容词】；能让攻击力上升1.5倍的能力，原出自机战系列，后引申为激昂的心情。另有热血动（漫）画，如《One Piece》、《家庭教师Hitman Reborn！》、《FAIRY TAIL》等。\r\n推倒：【动词】；即是把某人推倒在地上（或床上）的意思，例：萝莉、某游戏女角。\r\n暴走：【名词、动词】；暴走一词于EVATV版第2集18：28第一次出现。指机体失去控制，或指人失去理智，而以本能做出近乎野兽的行为。以新世纪福音战士eva初号机为标准代表。\r\n领便当：【动词】；在日本动画和游戏中，当一部作品中的人物死亡，出演这个人物的声优就可以退出剧组的演出，领一份便当之后就可以下班了。所以在ACG领域里用领便当来比喻一个人物的死亡。\r\n吐便当：【动词】；源自领便当一词，指前面剧情中已死的角色在后面的剧情中复活。\r\n先行者：【名词】；为中国大陆所开发出的先进人型机械，后为日本动漫人士拿来恶搞，而成为一高战斗力之兵器，其最著名的武器为跨下的“中华大加农”。\r\n大好：【形容词】；源自日语[だいすき]（大好き），最喜欢。\r\n素敌：【形容词、副词】；有称赞“好棒、完美”之意，同意于“素晴”。\r\n恶趣味：【名词】；怪癖、与众不同的特殊喜好，通常此类特殊喜欢往往带有一些较负面的东西。\r\n流星：【名词】；意指略带一点点情色意味或有些微露点成份的CG图。\r\n停尸间：【名词】；聊天室的别名，意指聊天室没有说话的时候。\r\n口胡：【助词、感叹词】；此为港漫用语，意为“胡说”。为扩大效果可用“口古月”。\r\n口桀：【助词、感叹词】；此为港漫用语，常用来指坏人的笑声，特别是指*笑。\r\n魂：【名词】；能让攻击力上升2.5倍的精神，原出自机战系列，另一解为指带有荣耀，奋战不懈的职业精神。\r\n爱：【名词】；能让HP回复的能力，原出自机战系列（几乎拥有全部技能效果以至于无敌的一个技能）。\r\n大人买：【动词】；是泛指利用大人（或长辈）的财力、信用卡等手段，将某项收集品进行大量收购及占据的行为，因而造成市场价格的混乱、崩坏，是种新形态的经济犯罪行为。以前通常是具有相当财力的大人，因为怨念而造成的行为模式，但截至2013年学生的所得（零用钱及打工）也逐年的增加。“大人买”也有犯罪低年龄化的趋势。同“长辈买”、“长辈威能”。\r\n体温治疗：【名词】，某女仆长发明的治疗法，据说能治百病，但有闻该女仆长使用此式前皆被轰飞。\r\n癌细胞：【名词】；谜样的蓝色有角生物，真名为unyuu，有多个变种，出没于各大“任意”，是为某只怪兽最讨厌之物。\r\n外道：【名词】；特指拥有过度丰满胸部的女性，另解为有违常理（或者是太合常理）的事物。\r\n病状恶化促进剂：【名词】；某怪兽生病吃的药物，功用就如名字所说一样。\r\n甘人：【名词】；中文称作甜人！意思是新人！某\"X\"o物非常热爱的称号。\r\n好人卡：【名词】；据传起源于某光棍向心仪的少女告白，但被对方以“你是个好人，但是我们不能在一起。”为理由婉言拒绝了，从此“你是个好人”就成为光棍被拒绝的代表性语言。而“被发了好人卡”也就是被心仪的对象拒绝了的意思。\r\n甘：【助词、感叹词】；日文发音为“AMAI”，在很多动漫画也有登场的字句！意即“太天真了！！”或“太甜了！”（指食物），而在仿真裹统称为“太甜了！！！”。\r\n仆桌：【动词】；此为高等颜文字技巧，须将仆街技及翻桌技练的十分成熟，而且等级还须满20才可使用。\r\n掀桌：【动词】； 常指动漫人物因发怒而掀掉桌子，常用于傲娇属性的人物身上。\r\n销魂：【形容词、副词】；形容一事物或动作令人感到极为惊讶、惊慌失措或指一个人已经陷入无法言语、无法响应的情况。\r\n谜：【形容词、副词】：指一件事物或动作太神奇、太奇妙或太难以解释，通常作：“好谜啊！”。\r\n王道：【名词、形容词】；可解为王走的道路、正确的道路、正确的方法，或解为最强大的；例句：“KUSO才是王道啊！”。\r\n铁拳无敌：【名词】；为一融合中国博大精神的武术、绝对奥义恶搞精神的伟大作品。\r\n怪蜀黍：【名词、形容词】怪蜀黍（怪叔叔） 一般出现在和LOLI有关的\"邪恶\"论坛.指那些喜欢LOLI带有拐带和推倒LOLI倾向的成年男人！\r\n软妹子：【名词、形容词】兴起于某个cosplay视频所谓的软妹子，主要特征是目光软软，嗓音软软，腰身软软，而性格往往有点天然呆的属性，但性格温柔体贴，比如：天降之物里面的伊卡洛斯和轻音少女里面的平泽唯。\r\n补魔：来自于《FATE/STAY NIGHT》中的一个片段，卫宫士郎由于签订的契约不完全，无法将魔力供给给SABER。所以，在远坂凛的帮助下以OX来补充魔力（河蟹版本中是以一种奇怪的姿势进行魔力补充）。，但又以“补魔”这种较为严肃的行为，所以一见到动漫里比较暧昧的场景，一般都有人以“补魔”来命名。常见于弹幕视频网站BILIBILI、ACFUN上。\r\n猎奇：在ACG界中，猎奇可指任何血腥、暴力而残酷的事物，或者指风格诡异、黑暗、甚至扭曲的作品。极为残酷的虐杀，人的惨死、极为残忍的SM、非正常人体改造。人或动物被肢解、被刀或武器攻击而因此流出大量血液。以暴力的作法导致的内脏外露。砍头、被子弹击中头部。被压死、刺穿。受到野兽、触手、丧尸等生物残酷的攻击。由于猎奇这个词汇的意义代表血腥的事物，猎奇作品通常是儿童不宜的，有时甚至是令人感到恶心的。为奇异的或令人不快的，后来逐渐也被用来形容猥亵的事物或虐杀一类的行为。\r\n傲娇受：来源于耽美文和漫画等。指的是实际上个性很温柔而且喜好朋友，但经常装作冷酷而不跟人打交道的姿态。以强硬的口气掩饰害羞或其它内心真实想法。口是心非，别扭。简单的说就是“外冷内热”。\r\n绅士：ACG界中的用法源自《搞笑漫画日和》的其中一篇中，熊吉的强词夺理的名言：“我不是变态；就算是变态，也只是冠有变态之名的绅士！而绅士这个词在ACG界中却多指代高等变态。虽然世上变态比比皆是，但要能以绅士之名行变态之实就不是人人办得到的了。基本上能被称作绅士的变态角色都有一两种神技，如欧金金撞爆强化玻璃，死者复活，回转中心脚，一指电背，嘴炮，裸跑，超乎极限的妄想。\r\n傲沉：傲沉（ツンしゅん），衍生于傲娇的新萌属性，是指以高傲的态度对待他人后，因自我厌恶很快进入低沉的心理状态。在高傲对待他人的同时，心中同时严重憎恶自己的言行，却无法遏止喷薄不停的毒舌。在傲（ツン）的态度后变得消沉（しゅん），与傲娇略有不同。例如《妖狐X仆SS》中的白鬼院凛凛蝶。\r\n本命：本命 (HONMEI) 的原意可解释为真命天子，日语中还有另一个意思，那就是赛马等比赛时，大家最看好的马或选手。在ACG界引申开就变成了最最喜爱的角色，心中排行第一的角色，最受瞩目的人(事，物)， 或是最属意的选择等。也可解释为“我只支持XX喔！”等意思。 当然，因为大家的花痴和花心程度不同，本命到也已不单单只有一个人，会出现“双本命”、“第一本命”、“第二本命”等说法。', '御宅族：（日文:おたく、音 otaku）一般以动画、漫画、游戏、轻小说的狂热爱好者为主要的称呼对象。对于了解“御宅族”涵义的人，通常将作形容词的“宅”视作“御宅”的简化，常使用“宅男”、“宅女”、“阿宅”或单独一个“宅”字及其衍生出的词汇来指代御宅文化相关事物。\r\n二次元：在传统上，以平面的媒体所表现的虚拟角色，如漫画或动画中的人物，因其二维空间的本质，而常被称为“二次元角色”，以有别于现实（三维空间）的人物。\r\n2.5次元：介于动漫世界和现实世界的存在。像上面提到的周边世界，存在于动漫和现实之间的产物，所存在的圈子，被称为2.5次元，不过在分类日渐清晰化。目前，2.5次元多用于代指由动漫、游戏原作改编的舞台剧或音乐剧。\r\n三次元：在动漫迷眼中现实世界就是三次元。\r\n腐女：\r\n腐女源自于日语，是由同音的“腐女子（ふじょし）”转化而来，为喜爱BL的女性自嘲的用语。腐女的“腐”在日文有无可救药的意思，而腐女是专门指称对于男男爱情——BL系作品情有独钟的女性，通常是喜欢此类作品的女性之间彼此自嘲的讲法。\r\n吐槽：“吐槽”一词是指从对方的语言或行为中找到一个漏洞或关键词作为切入点，发出带有调侃意味的感慨或疑问，而打着吐槽旗号的八卦、抱怨、吐苦水、说三道四都不属于吐槽。此词来源于日本漫才（类似于中国的相声）里的“突っ込み” ，普通话里相当于相声的“捧哏”，闽南语中有“吐槽”一词，所以台湾的翻译都翻成“吐槽”，然后大陆也开始用了。最接近的词是“抬扛”、“掀老底”、“拆台”。例如：志村新八（《银魂》）、泽田纲吉、弗兰（《家庭教师hitman Reborn》）。\r\n萌：【形容词、副词】；在日本动漫中，此字代表刚刚从脑海里一闪而过的不夹带其余杂质美好的感情喜爱，欣赏，使人感到愉快等。有被电到的感觉，代表喜欢，激动人心，激发荷尔蒙，可爱等等的含义，指看到令人觉得的极度可爱之人、事、物的形容词。\r\n御姐：一个\r\n御姐和萝莉相对的词，单纯来说是指相对年纪比较大但又不会是“熟女”程度的女生，一般定义是成年以上（日本成年二十岁），发育良好，性格比较压人/偏强势；有一点可以肯定，就是御姐一定不是被你叫做“姐姐”的那种普通而温柔的人……这方面的范围定义方法接近于萝莉，而区别于御妹。\r\n女王：即指那些很有气势，能够独当一面，成熟强势，有一定的能力凌驾于所有人之上的人，常使唤人的人物属性，可以适当降低年龄要求，一般是在十六岁以上（日本女性十六可结婚由此演变）。也可以用来称呼比较强势的男性受。这类人物的女性一般不会撒娇耍赖，而是坚强而勇敢，拥有领袖的风范，但坚强勇敢的女性却不一定是女王。一般的女王都是御姐，但御姐并不是女王。\r\n正太：【名词、形容词】；和萝莉属相反性别同义词，也就是指生理年龄约为3～15岁左右之未成年男孩，同样因各人见解之不同，现只指作外貌像小孩的男孩，其明确之定义为“依据个人观点而认知的小弟弟”；例句：“看，那边有一个好可爱的正太唷！”。例子人物：夏尔【黑执事】镜音连（镜音Len）。\r\n萝莉（Loli）：【名词、形容词】；与“幼女”不同，其生理年龄约为 8~14岁之间的少女，后因网络传播导致含义出现偏差，现只指作外貌像小孩的女孩，其明确之定义为“依据个人观点而认知的小妹妹”；例句：“好可爱的萝莉呀！”“这真是太萝莉啦！”。例子人物真城璃茉（守护甜心），菲特(魔法少女奈叶)。\r\n乙女：乙女该词来自日本。乙女（おとめ）。有三个意思：1，年轻女子、姑娘、少女 2，处女、未婚女子 3，日本古代和着宫中舞乐起舞的舞女。乙女被用来表示是介于萝莉和御姐之间的女孩子。\r\n中二病：（又称\r\n中二病初二症）指一种自我认知心态。“中二”是日语对“初中二年级”的称呼，中二病从字面上来理解就是：初二年级青少年的某些病态自我意识。其实它不限于初二年级，也未必算正规意义上的病，这只是一种谑称。有不同的表现：有的陷入对生死、宇宙、自己、他人和身边的事物的存在的片面苦思之中，有的对政治、社会的肮脏进行想当然的批判，还有装不良的，或许有过伟大的计划想改变身边的事物，结果什么行动都没有，最终就这样收敛了。这种性质也算是中二病的病状。区别于高二病。\r\n萝太：即为伪娘的初级阶段。此为OTAKU新创造的合成词：萝莉（loli） +正太（shota）=LOTAI。萝太通常是指年纪小、没有胡子、长相漂亮、行为举止好似女孩子的可爱小男生。\r\n天然呆：多为御宅族使用，用以喻指那些看起来傻乎乎有点反应迟钝的纯情可爱萝莉或正太，或者他们所具备的性格特征。作为一种性格而言，其是相对外显的性格。如：古河早苗，古河渚，冈崎汐（均出自《CLANNAD》）。\r\n无口无口：日语假名作むくち，罗马音读作mukuchi，本义为沉默寡言、不爱说话，在现实中是一个形容动词，例如：无口な慰めをくれたから（但有你几句安慰的话）。而在ACG界则是一种萌特性。绝大部份可被称得上无口的人物，都是女生。无口作为萌的属性，并非只是单单的不作声，而是一种复杂的行为及性格复合特征，然而，「没有需要，便不会说话。没有需要，便不作表情」就是无口的外在表现的集中体现。有很多的时候，无口而萌的引发点会是在无口特性骤减的一刻，即是「无口不无口」的瞬间。在一套作品内，多数不会出现多过一个无口属性的人物。这里需说明的是汉语中并无无口这个词语，因而不可以按照汉语词法将其理解作没有嘴，不说话之类的意思。\r\n人妻：指男人的妻子，多用于次文化（如ACG），也是萌属性的一种。一般兼具大和抚子属性。由于已婚女性在婚后，多半在异性相处上没有婚前的娇羞，或一定的矜持（特别是同是萌属性之一的扭扭捏捏），因此在社交活动圈中拥有一种特殊的成熟感；这种成熟感往往是吸引一些特定未婚异性的关键。有一些人妻表现的人物具有大和抚子的属性，她们相夫教子，一手包办家务，对外则能做到非常合乎礼节的表现，也是另一种吸引特定未婚异性的特质之一。在一些拥有特殊表现的作品中，她们不但居于主动，而且常有出乎意料大胆的行径，一般可认为是在描述婚后的女性被激发的另一面。现用于同性恋人中某一方温柔体贴、善解人意。\r\n傲娇：傲娇（ツンデレ，亦常翻译为外冷内热、蛮横娇羞、恶娇、娇蛮、不坦率）是指“平常说话带刺态度强硬高傲，但在一定的条件下害臊地黏腻在身边”的人物，主要是常用于恋爱型态的词汇。本来是发源于日本的美少女游戏业界，而在包含动画、漫画的御宅族次文化里广泛形成萌的对象之一种类型，另一方面在、大众媒体上也会被使用到，作为譬喻有魅力的人物形象、恋爱模范、话题人物等。依照个人不同而定义的差异甚大，也可说是个相当抽象的概念。\r\n病娇：它包含了两个不同的类别：一种是原本正常但是精神无法承受情感的重负而丧失理智的人；另一种人则是本身就不具备正常思维方式的人，因为陷入爱情而变得更加不正常，一种是随着时间而变化，一种则是因果关系，先天上并不是女主角的天性一开始就是病娇，大多是因为男主角方面懦弱、傲娇、鬼畜、恶劣的个性所导致这样的结果。在这样的意义下病娇的交往对象和懦弱的个性密不可分。《未来日记》女主我妻由乃是典型病娇代表。\r\n腹黑腹黑：看字面意思的话，就是“肚子里都是黑的”。这是一句日文，原意为“心地坏的”、“黑心的”、“黑心肝”、“表里不一”的意思，并常常将此一面进行演技化的伪装掩盖，使人看起来总是笑意充沛，温和无害，亲切有加，但却是在几秒内的打量里就能精确地计划出能以怎样的步骤让你自愿掉进三米外的粪池。再直白点解释，外表善良，温柔，内心恶毒，邪恶，把自己的快乐建立在别人的痛苦之上，不折磨死人誓不罢休。所以，你最好不要招惹这种人，否则你连自己是怎么死的都不知道。例子人物：塞巴斯蒂安（黑执事）夜神月（死亡笔记）不二周助（网球王子）、凤镜夜（樱兰高校男公关部）、折原临也（无头骑士异闻录）、鲁路修（反叛的鲁路修）、梦梦·贝莉雅·戴比路克（出包王女）。\r\n毒舌：多为御宅族所使用（在此意义下），用以喻指那些言谈流利明确，用词恶毒阴辣，能使语言的被施加者产生诸如头皮发麻、恶心不适和抑郁不快、低沉失落等生理反应和心理反应的动漫人物及其说话方式与处事态度。\r\n猫耳娘：拥有猫耳、尾巴、肉球等猫特征的女孩。可能是Cosplay的人类女孩，或是兽人、外星人，在奇幻或科幻的次文化族群经常出现。又称猫耳、猫女。猫耳萌属性的女孩，是日本动漫游戏界的一条重大分支。猫耳是萌元素的一种，有很萌的魅力，一般为萝莉系，是COSPLAY的大爱。必备萌要素猫耳猫尾，最好有铃铛，可以直接攻陷人心。在漫画里一般是魔法系，有变身之类的技能。\r\n兔耳娘：头上长着兔耳朵的萌属性。\r\n女仆：\r\n女仆在日本女佣被当作萌的对象之一，通常是妙龄女子穿着女佣围裙即所谓的女佣服（メイド服）。在ACG作品或cosplay的取材上有许多使用。就连在作品中主角侧旁安置没血缘关系的女性角色这种手法的场合也会被使用，称呼雇主的时候大致是主人（御主人様（ごしゅじんさま））或xx大人（xx様， xx为被称呼的对象名字）。\r\nSM：性虐恋（英文sadomasochism）的简称，通常s是施虐方，m是受虐方，s也被叫做主人，m是奴，sm是一种将性快感与痛感联系在一起的特殊性活动，即通过痛感获得性快感的性活动，是一种性欲倒错，属于bdsm重要术语之一。其中的疼痛既包括肉体痛苦（如鞭打导致的痛感），又包括精神上的痛苦（如羞辱、支配所导致的痛苦感觉），虐恋还包含施虐癖和受虐癖两个范畴，对他人施加痛苦可以导致自身的性快感、性兴奋或单纯的乐趣则属于前者，如果接受痛苦可以导致自身的满足感则属于后者。\r\n鬼畜：1.（日语直译）鬼畜一般指有心理变态性虐倾向的流氓或淫棍，恶趣味指有鬼畜趋向的不好的趣味，也指其它。（其实，最主要就是性虐）源自日语，原意指像魔鬼畜牲一样残酷无情。一般指五种不道德的性取向，且有严重虐待倾向。2.在国内宅圈通常指一种恶搞视频类型，将搞笑的声音片段、台词或表情替换原有的一段歌曲旋律和画面，或是将其组合成新的旋律，配合画面的重复形成节奏感的视频。名词起源于一个叫“最终鬼畜蓝蓝路”的视频，也因其画面像鬼一样的抽搐。在日本宅圈称之为“音mad”。\r\n幼驯染：在日文中的“幼驯染”指的是从小玩在一起的朋友，因在日本动画、漫画甚至文学作品中幼驯染相恋的故事极受欢迎，所以通常翻作青梅竹马。\r\n洛丽塔（Lolita）：【名词】；A seductive adolescent girl. 一个魅力没法挡的未成年少女，也就是萝莉的来源。也是日本流行的一种服饰，又称lolita fashion，喜欢这种服饰的女孩被称为lo娘。如今这种流行服饰已经传播到了我国，以及世界各地。\r\n兄贵：【名词、形容词】；指全身筋肉爆满，拥有强硬华美肌肉喜欢“摔跤”，还必须具备主观上对同性菊花有兴趣或者一定程度上的基情才能称之为兄贵。\r\n姐贵：【名词、形容词】；意指成熟妩媚的大姐姐，其意类似于“熟女”，通“女市贵”。\r\n脑残：【名词，形容词】； 简说：NC 1.指不用脑袋思考便可以完成的事情，2.火星人的想法、做法，3.非正常、非主流（诸如常人看来很傻的话题，某几人却很乐意讨论这个），4.傻了\r\n小白：【名词、形容词】；指网络上不守礼节、不守秩序、不会自我规范的人，为“小白痴”的简称，有时也指智商太低或理解力太低的人。同义于日文的“厨房”。一般自称小白的人，是指自己对于某方面知识不足，是新手。有时也是小白鼠的简称。\r\nLGBT：女同性恋、男同性恋、双性恋、跨性别。\r\n伪娘：【名词】；\r\n伪娘形容词和动词就是“伪”。通常指的是有女性美貌的正常男性角色，且变装(男扮女装)后常常带有很强的萌属性，有的可能更胜过一般女性角色。伪娘是因为动漫作品中出现了从相貌上被认定为女的动漫角色，其实是男性角色而发出感慨，而出现的一个新名词。伪娘，说白了，就是相貌形态天然的呈女性化美的男人。伪娘也不是硬套个女装就可以的，还要化妆以及掩盖掉男的特征（例如：关节，肩宽，脸型），伪娘是同时具有女性和男性魅力的，一般伪娘漂亮的是靠硬件的，但是有些硬件不行的可以用脂肪来掩盖掉一些再加上化妆也都可以的，所以有些伪娘不是非常瘦的，有本书是专门教女装（逆性别）Cos的教程，叫《好想做个女孩子！》，还有，日本有个节目，叫“学校封神榜”，有个企划是“女装天堂”，全是女装子其中有不少伪娘，截至2013年有许多伪娘的动画，有兴趣的话可以去看哟~ 例子：藤咲凪彦（守护甜心）。\r\nKUSO：【名词、动词、形容词、副词、感叹词、助词】；日文“可恶”的读音。名词做为粪解释；动词则解为恶搞；形容词及副词解释为事物或动作很恶搞、很爆笑；也可用来大声念出此字以纾发自己的情感，是为感叹词之解释，其带有“恶搞”或“妈的”之意；此外KUSO也可以用做句首或句末助词。KUSO在台湾也有这意思，有比较广的用途。\r\nCG：【名词】在动画界中是将计算机动画或者图片作为宣传手段或者展示手段，在游戏中则是游戏的附带质量比较高图片\r\n口癖：【名词】；指在习惯性的在每一句话的最后加上去的句末助词，例：“喵~”、“的说~”、“捏~”、“嘎~”等\r\n黑化：\r\n黑化【名词、动词、形容词】；“黑化”语出18禁游戏“fate stay night（命运长夜）”，指间桐樱线的saber被圣杯污染黑化，后引申为“性情大变”。又指平时很好人的人受到某种刺激后行为变得疯狂（通常都带有嗜血倾向）。大体接近崩坏，但程度要轻的多，指精神上的坏掉... 眼睛没有了焦点...就变成了一团黑了....一般是大受刺激之后的状态。也写作“病んデレ”（病娇），“病ん”病态的意思，“デレ”娇羞可爱的意思，不过出处通常一至认为是来自于2005年的18禁游戏“school days”。结果大受欢迎，同时间的舞-hime、shuffle都有类似的情形出现这词典才开始渐渐流行起来。\r\n残念：【形容词、副词、感叹词】；可惜的，来源于日文中“遗憾”的日汉字写法；例句：“今天没有买到妹妹公主的音乐盒，真是残念啊。”。\r\n怨念：【名词、形容词】；某人对某件事感到怨恨而形成的一股强大的灵念，或用来表示对某件事物的狂热；例句：“昨日通关后没电无法存档！怨念呀……”\r\nXD：(1)西式颜文字的一种，横着看起来像是一个猥琐而不怀好意的笑容,其意思已经被大多数BBS所接受.人们常在留言的最后加上XD,表示了自己用一种很邪恶的眼看着方。\r\n不过，更多的人愿意接受认为是一种开怀的大笑，X表示眼睛笑成叉形，D表示张大的嘴。(2)XD作为网络用语，也可以解释为：兄弟。例如：XD们，给介绍几款好玩的游戏。(3)象形文字，形容不好意思。(4)XD还有“叉的”的意思（如 女马的,女良的），意在不说脏话而表示愤怒。(5)XD还有“小弟”的意思，在论坛发帖交流中需求得求知信息时，【如：各位大虾方便的话，说下怎么去那里啊，XD（小弟）在这里就多谢啦！】形容卑称自己，寻求别人帮助，表示对帮助者的敬意。\r\nCP：Character Coupling（人物配对）的缩写，主要用在同人作品中。\r\n控：【名词、动词】；即日文发音中的\"con\"，源于英文中的complex ，在心理学上指情结，如恋母情结等。控指极度喜欢某东西之人或极度喜欢某东西，作名词时喜欢的东西冠在“控”字之前，例：萝莉控。动词时“控”字置前，例：控大叔。\r\n眼镜娘：\r\n眼镜娘同萝莉等乃同一类词，顾名思义就是喜欢戴眼镜的女生，引申条件为女生必须头发长长、个性温柔。\r\nBL：全名Boy\'s Love，指男与男之间的爱慕，亦可代表为男同性恋（动漫中专用）。\r\n耽美：1.美型的BL。2.用于形容女性向的游戏中的男性角色。缩写为DM\r\nGL：全名Girl\'s Love(俗称: 百合)，指女与女之间的爱慕，亦可代表为女同性恋（动漫中专用）。\r\n健全：【形容词】；形容作品本身非常积极向上，老少咸宜，适合任何年龄段人鉴赏；没有不健康的因素在内。\r\n搞基：指男性同性恋趋向者。是指某一种喜欢男人的男性，此类人称为“搞基”。“基”的粤语读音和“Gay”的读音相同。 “搞基”是男性与男性之间的性关系群，在当代社会中此种现象非常常见。该词也由贬义词成为中性词。基佬，基情。更甚至有“少年，来一发”之说，各种内涵不言而喻。\r\n死库水（スク水）：日本的初中至高中的校园泳装，绅士间术语通常简称作“スク水”（スクール水着 中文常音译为“史库水”、“死库水”）。在一些国家的学校里，学生上游泳课时，一般都穿着学校的制式泳装，这类泳装即为校园泳装。为了方便水中活动，校园泳装一般都采取紧身、连身设计，属于保守的低叉泳装。\r\n三无动漫：“やま(山)なし、おち(落ち)なし、いみ(意味)なし”的缩写，就是“无截止、无目标、无意义”的意思。此类漫画的特点是描写男性同性恋，一般是用热门故事里的角色。又称作“少年爱/Boys\'。\r\n三无少女：ACG界用语且多为御宅族所使用，用以喻指那些沉默寡言、缺乏面部表情、难以被窥知心理的内心封闭的少女。三无源于日语，即无口、无心、无表情。无口指少言寡语，即使说话也就是最简单精练的回答；无表情指没有表情，看不到悲伤也看不到喜悦，看不出内在的心理情绪，有些冰冷且不为外界所动的感觉；无心指无法了解其内心的感情色彩，并非说“三无少女”是没有心灵的。三无少女，ACG用语，萌少女的一种。基本标准为无口无心无表情，即面部缺少表情，只进行必要对话，无法感觉到她的内心变化。但因为实际上却会随着故事进行在不同情况表现出不三无的一面，因此又可分为多个种类。名词，“三无”则作为形容词。如angel beats中的立华奏\r\n绝对领域绝对领域：在过膝袜子和短裙之间那一段可以看到大腿的若隐若现的空间。那段裙子与长袜之间若隐若现的美丽肌肤让无数男生感到充满诱惑，能够让他们从中看到[美丽的梦想]，所以被称为神圣不可侵犯的[绝对领域]。出处则为电脑桌面模拟人格系统软件伪春菜（<noinclude>）中的角色<noinclude>。至於最初何时出现「绝对领域」这个名词至今已无从稽考，但该模拟人格角色的作者在其日记、讨论区及同人志经常使用「绝对领域」一词，再加上自21世纪以来，出现绝对领域的动画角色有所增加（主要原因是由电脑游戏改编动画增加），至使该词在同人及御宅族间流传。直到2005年年底，日本一个电视节目「电视冠军」中一名参加者将此词公诸于世，令本词开始被日本主流社会使用。「绝对领域」一词用于描写动画、漫画及电脑游戏中的二次元女性和秀吉角色作为萌的一种特征。\r\n种草莓：草莓者，吻痕是也。而种草莓的意思也就是把这个印记留在某人身上的意思。 一般情侣或夫妻的身上可以见到（较多流行于八零以后的年轻情侣、夫妻之间）。因用力过猛而留下吻痕。此“痕迹”并不是不会消失的！一般在2~3天便逐渐变淡，继而7天内消失无痕。\r\n达令：达令就是darling，英文意为亲爱的。\r\n修罗场：动漫中的是喜欢同一个人的复数的人（多指女性）在被喜欢的人面前相遇时候相互的表现自己、排挤她人、互相竞争的场景，三角恋或多角恋的情况下喜闻乐见的场景。比如表面上2个女生互相客套吹捧，实际上口蜜腹剑笑里藏刀暗藏汹涌。\r\n后宫动漫：因为除了男主角外的男性都是没有竞争力或不介入的配角，男主角就如处于后宫，故得名。一般情况下，一大堆的女主角围绕着同一个男主角发生错综复杂的爱情，而男主角往往到了结尾依然无法作出选择。这就是一个很明显的后宫了。而当性别转换一下，一堆男主角围绕着一个女主角进行故事的情况下，这个便是“逆后宫”了。而虽然身边美女/美男众多，但是男主角/女主角自始至终只是对其中一个女主角/男主角一心一意的情况下，便称之为“伪后宫”。百合控的女主角被数位甚至数十位美女或美少女包围的作品也被称后宫。\r\n表番：如果从原意出发，由于工口动画是不会在电视上播放，所以不存在表里之说。甚至连“番”这个字都不沾边。能够被称为“番组”的，只有在公共媒体中播放的节目。里番的定义适用于一切电视、广播级网络节目，包括但不限于动画节目。\r\ncosplay：比较狭义的解释是模仿、装扮虚拟世界的角色，也被称为角色扮演。由此，在网络上衍生出了新的含义，往往被用来形容“假扮某类人的人”。\r\n大和抚子（やまとなでしこ）：\r\n大和抚子被用作性格文静，温柔稳重并且具有高尚美德的女性的代称，也一度被日本政府作为宣扬父权社会意识形态遵三从四德、相夫教子的传统日本女性的符号一般的存在，少数时候也被用来广义地代指日本女性。这个代称在现代一般地被ACG爱好者使用，因此也是萌属性的一种。\r\n闪光：那些不停地炫耀自己多有钱多好运多受美女欢迎的人，群众纷纷表示眼睛被闪瞎了。\r\n脑补：即脑内补完。动漫方面的用语。通常是指在头脑中对某些情节进行脑内补充，对漫画中、小说中以及现实中自己希望而没有发生的情节在脑内幻想。\r\n赛高：【形容词、副词】；日语「最高」さいこう的音译，最棒、最好之意。\r\n败家：【动词、形容词】；指花钱买很多的精品（好物）的动作，另解为一次花费很多钱去买东西或解为购物。\r\n苦手：【形容词】；对某件事感到困扰、棘手。\r\n轰杀：【动词】；此为港漫用语，用来指要杀掉某人的动作。\r\n废柴（废材）：【名词】；此为港漫用语，指无用之人，或者是废物，通“废柴”、“脓包”，什么都做不好的人。通常将MADAO用作形容废柴或自嘲（出自《银魂》中长谷川泰三）。比如沢田纲吉（日常态）。例句：“我就是一个废柴，什么都做不好……”\r\n破天：【动词】；此为港漫用语，就是“打破天”，不爽时可使用此词。\r\n逆天：【动词、助词、感叹词、形容词】；此为港漫用语（起源于中国大陆网文），指要逆着天道而行，或愤怒时所使用之句首助词。有时也可用于形容词，形容某主角能力太过强大，到了违背天理的程度。例句：“这主角的能力太逆天了，看着没嘛劲。”\r\n热血：【名词、形容词】；能让攻击力上升1.5倍的能力，原出自机战系列，后引申为激昂的心情。另有热血动（漫）画，如《One Piece》、《家庭教师Hitman Reborn！》、《FAIRY TAIL》等。\r\n推倒：【动词】；即是把某人推倒在地上（或床上）的意思，例：萝莉、某游戏女角。\r\n暴走：【名词、动词】；暴走一词于EVATV版第2集18：28第一次出现。指机体失去控制，或指人失去理智，而以本能做出近乎野兽的行为。以新世纪福音战士eva初号机为标准代表。\r\n领便当：【动词】；在日本动画和游戏中，当一部作品中的人物死亡，出演这个人物的声优就可以退出剧组的演出，领一份便当之后就可以下班了。所以在ACG领域里用领便当来比喻一个人物的死亡。\r\n吐便当：【动词】；源自领便当一词，指前面剧情中已死的角色在后面的剧情中复活。\r\n先行者：【名词】；为中国大陆所开发出的先进人型机械，后为日本动漫人士拿来恶搞，而成为一高战斗力之兵器，其最著名的武器为跨下的“中华大加农”。\r\n大好：【形容词】；源自日语[だいすき]（大好き），最喜欢。\r\n素敌：【形容词、副词】；有称赞“好棒、完美”之意，同意于“素晴”。\r\n恶趣味：【名词】；怪癖、与众不同的特殊喜好，通常此类特殊喜欢往往带有一些较负面的东西。\r\n流星：【名词】；意指略带一点点情色意味或有些微露点成份的CG图。\r\n停尸间：【名词】；聊天室的别名，意指聊天室没有说话的时候。\r\n口胡：【助词、感叹词】；此为港漫用语，意为“胡说”。为扩大效果可用“口古月”。\r\n口桀：【助词、感叹词】；此为港漫用语，常用来指坏人的笑声，特别是指*笑。\r\n魂：【名词】；能让攻击力上升2.5倍的精神，原出自机战系列，另一解为指带有荣耀，奋战不懈的职业精神。\r\n爱：【名词】；能让HP回复的能力，原出自机战系列（几乎拥有全部技能效果以至于无敌的一个技能）。\r\n大人买：【动词】；是泛指利用大人（或长辈）的财力、信用卡等手段，将某项收集品进行大量收购及占据的行为，因而造成市场价格的混乱、崩坏，是种新形态的经济犯罪行为。以前通常是具有相当财力的大人，因为怨念而造成的行为模式，但截至2013年学生的所得（零用钱及打工）也逐年的增加。“大人买”也有犯罪低年龄化的趋势。同“长辈买”、“长辈威能”。\r\n体温治疗：【名词】，某女仆长发明的治疗法，据说能治百病，但有闻该女仆长使用此式前皆被轰飞。\r\n癌细胞：【名词】；谜样的蓝色有角生物，真名为unyuu，有多个变种，出没于各大“任意”，是为某只怪兽最讨厌之物。\r\n外道：【名词】；特指拥有过度丰满胸部的女性，另解为有违常理（或者是太合常理）的事物。\r\n病状恶化促进剂：【名词】；某怪兽生病吃的药物，功用就如名字所说一样。\r\n甘人：【名词】；中文称作甜人！意思是新人！某\"X\"o物非常热爱的称号。\r\n好人卡：【名词】；据传起源于某光棍向心仪的少女告白，但被对方以“你是个好人，但是我们不能在一起。”为理由婉言拒绝了，从此“你是个好人”就成为光棍被拒绝的代表性语言。而“被发了好人卡”也就是被心仪的对象拒绝了的意思。\r\n甘：【助词、感叹词】；日文发音为“AMAI”，在很多动漫画也有登场的字句！意即“太天真了！！”或“太甜了！”（指食物），而在仿真裹统称为“太甜了！！！”。\r\n仆桌：【动词】；此为高等颜文字技巧，须将仆街技及翻桌技练的十分成熟，而且等级还须满20才可使用。\r\n掀桌：【动词】； 常指动漫人物因发怒而掀掉桌子，常用于傲娇属性的人物身上。\r\n销魂：【形容词、副词】；形容一事物或动作令人感到极为惊讶、惊慌失措或指一个人已经陷入无法言语、无法响应的情况。\r\n谜：【形容词、副词】：指一件事物或动作太神奇、太奇妙或太难以解释，通常作：“好谜啊！”。\r\n王道：【名词、形容词】；可解为王走的道路、正确的道路、正确的方法，或解为最强大的；例句：“KUSO才是王道啊！”。\r\n铁拳无敌：【名词】；为一融合中国博大精神的武术、绝对奥义恶搞精神的伟大作品。\r\n怪蜀黍：【名词、形容词】怪蜀黍（怪叔叔） 一般出现在和LOLI有关的\"邪恶\"论坛.指那些喜欢LOLI带有拐带和推倒LOLI倾向的成年男人！\r\n软妹子：【名词、形容词】兴起于某个cosplay视频所谓的软妹子，主要特征是目光软软，嗓音软软，腰身软软，而性格往往有点天然呆的属性，但性格温柔体贴，比如：天降之物里面的伊卡洛斯和轻音少女里面的平泽唯。\r\n补魔：来自于《FATE/STAY NIGHT》中的一个片段，卫宫士郎由于签订的契约不完全，无法将魔力供给给SABER。所以，在远坂凛的帮助下以OX来补充魔力（河蟹版本中是以一种奇怪的姿势进行魔力补充）。，但又以“补魔”这种较为严肃的行为，所以一见到动漫里比较暧昧的场景，一般都有人以“补魔”来命名。常见于弹幕视频网站BILIBILI、ACFUN上。\r\n猎奇：在ACG界中，猎奇可指任何血腥、暴力而残酷的事物，或者指风格诡异、黑暗、甚至扭曲的作品。极为残酷的虐杀，人的惨死、极为残忍的SM、非正常人体改造。人或动物被肢解、被刀或武器攻击而因此流出大量血液。以暴力的作法导致的内脏外露。砍头、被子弹击中头部。被压死、刺穿。受到野兽、触手、丧尸等生物残酷的攻击。由于猎奇这个词汇的意义代表血腥的事物，猎奇作品通常是儿童不宜的，有时甚至是令人感到恶心的。为奇异的或令人不快的，后来逐渐也被用来形容猥亵的事物或虐杀一类的行为。\r\n傲娇受：来源于耽美文和漫画等。指的是实际上个性很温柔而且喜好朋友，但经常装作冷酷而不跟人打交道的姿态。以强硬的口气掩饰害羞或其它内心真实想法。口是心非，别扭。简单的说就是“外冷内热”。\r\n绅士：ACG界中的用法源自《搞笑漫画日和》的其中一篇中，熊吉的强词夺理的名言：“我不是变态；就算是变态，也只是冠有变态之名的绅士！而绅士这个词在ACG界中却多指代高等变态。虽然世上变态比比皆是，但要能以绅士之名行变态之实就不是人人办得到的了。基本上能被称作绅士的变态角色都有一两种神技，如欧金金撞爆强化玻璃，死者复活，回转中心脚，一指电背，嘴炮，裸跑，超乎极限的妄想。\r\n傲沉：傲沉（ツンしゅん），衍生于傲娇的新萌属性，是指以高傲的态度对待他人后，因自我厌恶很快进入低沉的心理状态。在高傲对待他人的同时，心中同时严重憎恶自己的言行，却无法遏止喷薄不停的毒舌。在傲（ツン）的态度后变得消沉（しゅん），与傲娇略有不同。例如《妖狐X仆SS》中的白鬼院凛凛蝶。\r\n本命：本命 (HONMEI) 的原意可解释为真命天子，日语中还有另一个意思，那就是赛马等比赛时，大家最看好的马或选手。在ACG界引申开就变成了最最喜爱的角色，心中排行第一的角色，最受瞩目的人(事，物)， 或是最属意的选择等。也可解释为“我只支持XX喔！”等意思。 当然，因为大家的花痴和花心程度不同，本命到也已不单单只有一个人，会出现“双本命”、“第一本命”、“第二本命”等说法。', '御宅，二次元，三次元。。。。。。', 'https://bkimg.cdn.bcebos.com/pic/42a98226cffc1e179c1167514790f603738de920?x-bce-process=image/resize,m_lfit,w_220,h_220,limit_1', '2020-04-24 14:44:28');
+INSERT INTO `jotter_article` VALUES (14, '文章功能测试', '<p>这是一个测试功能</p>\n', '这是一个测试功能\n', '这是一个测试功能', 'http://localhost:8443/api/file/btzojj.png', NULL);
+
+-- ----------------------------
+-- Table structure for recommends
+-- ----------------------------
+DROP TABLE IF EXISTS `recommends`;
+CREATE TABLE `recommends`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `video_id` int(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of recommends
+-- ----------------------------
+INSERT INTO `recommends` VALUES (1, 2);
+INSERT INTO `recommends` VALUES (2, 3);
+INSERT INTO `recommends` VALUES (3, 11);
+INSERT INTO `recommends` VALUES (4, 13);
+INSERT INTO `recommends` VALUES (5, 16);
+INSERT INTO `recommends` VALUES (6, 17);
+INSERT INTO `recommends` VALUES (7, 2);
+INSERT INTO `recommends` VALUES (8, 3);
+INSERT INTO `recommends` VALUES (9, 11);
+INSERT INTO `recommends` VALUES (10, 13);
+INSERT INTO `recommends` VALUES (11, 16);
+INSERT INTO `recommends` VALUES (12, 17);
 
 -- ----------------------------
 -- Table structure for user
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `username` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
-  `name` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `enabled` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
+CREATE TABLE `user`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `username` char(20) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `salt` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `enabled` tinyint(1) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `username`(`username`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 112 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'admin', '35b9529f89cfb9b848060ca576237e17', '8O+vDNr2sI3N82BI31fu1A==', '管理员', '12312312312', 'evan_nightly@163.com', '1');
-INSERT INTO `user` VALUES ('2', 'test', '85087738b6c1e1d212683bfafc163853', 'JBba3j5qRykIPJQYTNNH9A==', '测试', '12312312312', '123@123.com', '1');
-INSERT INTO `user` VALUES ('3', 'editor', '8583a2d965d6159edbf65c82d871fa3e', 'MZTe7Qwf9QgXBXrZzTIqJQ==', '编辑', null, null, '1');
+INSERT INTO `user` VALUES (1, 'admin', '35b9529f89cfb9b848060ca576237e17', '8O+vDNr2sI3N82BI31fu1A==', '管理员', '12312312312', 'evan_nightly@163.com', 1);
+INSERT INTO `user` VALUES (2, 'test', '85087738b6c1e1d212683bfafc163853', 'JBba3j5qRykIPJQYTNNH9A==', '测试', '12312312312', '123@123.com', 1);
+INSERT INTO `user` VALUES (3, 'editor', '8583a2d965d6159edbf65c82d871fa3e', 'MZTe7Qwf9QgXBXrZzTIqJQ==', '编辑', NULL, NULL, 1);
+INSERT INTO `user` VALUES (110, 'usertest', '7bb733572a44e7e867eb12460adde7ec', 'xBOf7WBwE8+6LqIdwRBroQ==', 'chenfan', '15666666666', '123456789@qq.com', 1);
+INSERT INTO `user` VALUES (112, 'game', 'b7cf199bbc579905b85d5c355581e1d9', 'zSVJq9DBLgGZsKAg9rgyqg==', '', '', '', 1);
+
+-- ----------------------------
+-- Table structure for user_video_grade
+-- ----------------------------
+DROP TABLE IF EXISTS `user_video_grade`;
+CREATE TABLE `user_video_grade`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `user_id` int(0) NULL DEFAULT NULL,
+  `video_id` int(0) NULL DEFAULT NULL,
+  `grade` int(0) NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of user_video_grade
+-- ----------------------------
+INSERT INTO `user_video_grade` VALUES (1, 1, 3, 5, '2020-04-25 09:37:47');
+INSERT INTO `user_video_grade` VALUES (4, 1, 2, 2, '2020-04-25 09:39:32');
+INSERT INTO `user_video_grade` VALUES (5, 112, 17, 4, '2020-04-27 09:20:32');
+INSERT INTO `user_video_grade` VALUES (6, 112, 16, 5, '2020-04-28 10:24:36');
+INSERT INTO `user_video_grade` VALUES (7, 112, 13, 5, '2020-04-27 09:20:44');
+INSERT INTO `user_video_grade` VALUES (8, 112, 11, 1, '2020-04-27 09:20:48');
+INSERT INTO `user_video_grade` VALUES (9, 112, 2, 4, '2020-04-28 05:21:51');
+INSERT INTO `user_video_grade` VALUES (10, 112, 3, 5, '2020-04-28 05:21:57');
+INSERT INTO `user_video_grade` VALUES (11, 1, 16, 5, '2020-04-28 09:34:07');
+
+-- ----------------------------
+-- Table structure for video
+-- ----------------------------
+DROP TABLE IF EXISTS `video`;
+CREATE TABLE `video`  (
+  `id` int(0) NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `authid` int(0) NULL DEFAULT NULL,
+  `cover` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `introduction` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `content` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `hits` int(0) NULL DEFAULT NULL,
+  `genres` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '不同的种类用 “|” 隔开',
+  `create_time` datetime(0) NULL DEFAULT NULL,
+  `update_time` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of video
+-- ----------------------------
+INSERT INTO `video` VALUES (1, '测试', 2, 'http://img3.imgtn.bdimg.com/it/u=2096711296,3406886379&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 40, '测试', '2020-04-18 10:31:25', '2020-04-18 10:31:30');
+INSERT INTO `video` VALUES (2, '这是一个标题', 2, 'http://img3.imgtn.bdimg.com/it/u=2096711296,3406886379&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 60, '测试|谷歌', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (3, '测试项2', 2, 'http://img3.imgtn.bdimg.com/it/u=2096711296,3406886379&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 999, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (4, '这是一个特别特别特别特别特别特别特别长的标题', 2, 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (5, '测试项3', 2, 'http://img1.imgtn.bdimg.com/it/u=1428604034,2416177319&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (6, '这是一个标题', 2, 'http://img3.imgtn.bdimg.com/it/u=2294157779,228208420&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 8, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (7, '测试项4', 2, 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (8, '这是一个标题', 2, 'http://img3.imgtn.bdimg.com/it/u=2552933139,119819814&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 16, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (9, '测试项5', 2, 'http://img0.imgtn.bdimg.com/it/u=1053341736,350945208&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (10, '这是一个标题', 2, 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (11, 'test2这是一个标题', 2, 'http://img1.imgtn.bdimg.com/it/u=1283481975,3951696734&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 9, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (12, '这是一个标题', 2, 'http://img4.imgtn.bdimg.com/it/u=3368342797,1076465203&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (13, 'test2这是一个标题', 2, 'http://img5.imgtn.bdimg.com/it/u=3576351522,3473155527&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (14, '这是一个标题', 2, 'http://img1.imgtn.bdimg.com/it/u=1428604034,2416177319&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 88, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (15, 'test2这是一个标题', 2, 'https://ss2.bdstatic.com/70cFvnSh_Q1YnxGkpoWK1HF6hhy/it/u=1653758374,1877802124&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (16, '这是一个标题', 2, 'http://img1.imgtn.bdimg.com/it/u=319853301,526989964&fm=26&gp=0.jpg', '这是一个测试项的游戏视频对应的介绍，输入此内容以检测前后端读取数据库的内容和前端页面对数据内容的显示', 'https://cdn.theguardian.tv/webM/2015/07/20/150716YesMen_synd_768k_vp8.webm', 1, '测试', '2020-04-18 21:40:03', '2020-04-18 21:40:05');
+INSERT INTO `video` VALUES (17, '崩坏三MMD', 1, 'http://img1.imgtn.bdimg.com/it/u=319853301,526989964&fm=26&gp=0.jpg', '崩坏三测试', NULL, 6, '崩坏三|崩坏学院', '2020-04-27 19:50:07', '2020-04-27 19:50:10');
+
+SET FOREIGN_KEY_CHECKS = 1;

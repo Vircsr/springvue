@@ -7,7 +7,7 @@
         <el-form-item label="用户名" label-width="120px" prop="username">
           <label>{{selectedUser.username}}</label>
         </el-form-item>
-        <el-form-item label="真实姓名" label-width="120px" prop="name">
+        <el-form-item label="昵称" label-width="120px" prop="name">
           <el-input v-model="selectedUser.name" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="手机号" label-width="120px" prop="phone">
@@ -62,7 +62,7 @@
         </el-table-column>
         <el-table-column
           prop="name"
-          label="真实姓名"
+          label="昵称"
           fit>
         </el-table-column>
         <el-table-column

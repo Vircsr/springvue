@@ -32,8 +32,6 @@
         this.$axios.get('/comiclist/topten').then(resp => {
         if (resp && resp.data.code === 200) {
           _this.animes = resp.data.result
-          console.log(_this.animes)
-          console.log(resp.data.result)
         }
       })
       }
@@ -42,5 +40,4 @@
 </script>
 
 <style scoped>
-
 </style>

@@ -12,9 +12,6 @@
           <div class="title">
             <span>{{item.title}}</span>
           </div>
-          <!-- <div class="author" >
-            <span>{{getAuthorName(item.author_id)}}</span>
-          </div> -->
         </router-link>
       </el-card>
     </el-row>

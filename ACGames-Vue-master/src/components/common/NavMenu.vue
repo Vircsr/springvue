@@ -20,7 +20,7 @@
         v-model="keywords"
         disabled>
       </el-input>
-       <el-button type="text" style="position:absolute;margin-top: 12px;right:20px;" @click="logout">{{$store.state.usernames}}</el-button>
+       <el-button type="text" style="position:absolute;margin-top: 12px;right:20px;" @click="logout">{{$store.state.user.username}}</el-button>
     </el-menu>
   </div>
 </template>
@@ -33,6 +33,7 @@
         navList: [
           {name: '/index', navItem: '首页'},
           {name: '/library', navItem: '视频资源'},
+          {name: '/jotter', navItem: '文章资源'},
           {name: '/personage', navItem: '个人中心'},
           {name: '/admin', navItem: '后台管理'}
         ],
